@@ -1,0 +1,29 @@
+restore database baphomet_20190406_06 from disk ='F:\Character\mj_homun\Character_tlog_201904060535.TRN' with norecovery
+restore database baphomet_20190406_06 from disk ='F:\Character\mj_homun\Character_tlog_201904060605.TRN' with recovery, replace,stopat='2019-04-06 06:00:00'
+
+restore database baphomet_20190406_07 from disk ='F:\Character\mj_homun\Character_tlog_201904060535.TRN' with norecovery
+restore database baphomet_20190406_07 from disk ='F:\Character\mj_homun\Character_tlog_201904060605.TRN' with norecovery
+restore database baphomet_20190406_07 from disk ='F:\Character\mj_homun\Character_tlog_201904060635.TRN' with norecovery
+restore database baphomet_20190406_07 from disk ='F:\Character\mj_homun\Character_tlog_201904060705.TRN' with recovery, replace,stopat='2019-04-06 07:00:00'
+
+restore database baphomet_20190406_08 from disk ='F:\Character\mj_homun\Character_tlog_201904060535.TRN' with norecovery
+restore database baphomet_20190406_08 from disk ='F:\Character\mj_homun\Character_tlog_201904060605.TRN' with norecovery
+restore database baphomet_20190406_08 from disk ='F:\Character\mj_homun\Character_tlog_201904060635.TRN' with norecovery
+restore database baphomet_20190406_08 from disk ='F:\Character\mj_homun\Character_tlog_201904060705.TRN' with norecovery
+restore database baphomet_20190406_08 from disk ='F:\Character\mj_homun\Character_tlog_201904060735.TRN' with norecovery
+restore database baphomet_20190406_08 from disk ='F:\Character\mj_homun\Character_tlog_201904060805.TRN' with recovery, replace,stopat='2019-04-06 08:00:00'
+
+restore database baphomet_20190406_09 from disk ='F:\Character\mj_homun\Character_tlog_201904060535.TRN' with norecovery
+restore database baphomet_20190406_09 from disk ='F:\Character\mj_homun\Character_tlog_201904060605.TRN' with norecovery
+restore database baphomet_20190406_09 from disk ='F:\Character\mj_homun\Character_tlog_201904060635.TRN' with norecovery
+restore database baphomet_20190406_09 from disk ='F:\Character\mj_homun\Character_tlog_201904060705.TRN' with norecovery
+restore database baphomet_20190406_09 from disk ='F:\Character\mj_homun\Character_tlog_201904060735.TRN' with norecovery
+restore database baphomet_20190406_09 from disk ='F:\Character\mj_homun\Character_tlog_201904060805.TRN' with norecovery
+restore database baphomet_20190406_09 from disk ='F:\Character\mj_homun\Character_tlog_201904060835.TRN' with norecovery
+restore database baphomet_20190406_09 from disk ='F:\Character\mj_homun\Character_tlog_201904060905.TRN' with recovery, replace,stopat='2019-04-06 09:00:00'
+
+
+select AID,GID,CharName,CharNum into requestlog20190410..[2019-04-06 06:00:00] from baphomet_20190406_06..charinfo where AID=10459773
+select AID,GID,CharName,CharNum into requestlog20190410..[2019-04-06 07:00:00] from baphomet_20190406_07..charinfo where AID=10459773
+select AID,GID,CharName,CharNum into requestlog20190410..[2019-04-06 08:00:00] from baphomet_20190406_08..charinfo where AID=10459773
+select AID,GID,CharName,CharNum into requestlog20190410..[2019-04-06 09:00:00] from baphomet_20190406_09..charinfo where AID=10459773

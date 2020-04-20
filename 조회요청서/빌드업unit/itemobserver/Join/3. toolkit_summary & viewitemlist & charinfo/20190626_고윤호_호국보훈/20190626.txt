@@ -1,0 +1,46 @@
+SELECT *  FROM baphomet_20190626.[dbo].[toolkit_summary] a where ITID=7253 order by 2
+SELECT *  FROM brynhild_20190626.[dbo].[toolkit_summary] a where ITID=7253 order by 2
+SELECT *  FROM mjolnir_20190626.[dbo].[toolkit_summary] a where ITID=7253 order by 2
+SELECT *  FROM darklord_20190626.[dbo].[toolkit_summary] a where ITID=7253 order by 2
+SELECT *  FROM yggdrasil_20190626.[dbo].[toolkit_summary] a where ITID=7253 order by 2
+
+SELECT c.aid,b.name,COUNT(*) as count  
+into requestlog_20190626..baphomet_7253
+FROM baphomet_20190626.[dbo].[toolkit_summary] a
+join script_M..viewItemList b on a.ITID=b.id
+join baphomet_20190626..charinfo c on a.Key1=c.gid
+where ITID=7253
+group by c.aid,b.NAME
+
+SELECT c.aid,b.name,COUNT(*) as count  
+into requestlog_20190626..darklord_7253
+FROM darklord_20190626.[dbo].[toolkit_summary] a
+join script_M..viewItemList b on a.ITID=b.id
+join darklord_20190626..charinfo c on a.Key1=c.gid
+where ITID=7253
+group by c.aid,b.NAME
+
+SELECT c.aid,b.name,COUNT(*) as count  
+into requestlog_20190626..yggdrasil_7253
+FROM yggdrasil_20190626.[dbo].[toolkit_summary] a
+join script_M..viewItemList b on a.ITID=b.id
+join yggdrasil_20190626..charinfo c on a.Key1=c.gid
+where ITID=7253
+group by c.aid,b.NAME
+
+
+SELECT c.aid,b.name,COUNT(*) as count  
+into requestlog_20190626..mjolnir_7253
+FROM mjolnir_20190626.[dbo].[toolkit_summary] a
+join script_z..viewItemList b on a.ITID=b.id
+join mjolnir_20190626..charinfo c on a.Key1=c.gid
+where ITID=7253
+group by c.aid,b.NAME
+
+SELECT c.aid,b.name,COUNT(*) as count  
+into requestlog_20190626..brynhild_7253
+FROM brynhild_20190626.[dbo].[toolkit_summary] a
+join script_z..viewItemList b on a.ITID=b.id
+join brynhild_20190626..charinfo c on a.Key1=c.gid
+where ITID=7253
+group by c.aid,b.NAME

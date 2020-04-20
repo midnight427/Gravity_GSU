@@ -1,0 +1,14 @@
+select logtime, ReceivedAID, ReceivedGID, ItemID, ItemName, ItemCount 
+into requestlog_20190122..Brynhild_Rodexlog
+from ItemLog_Brynhild_201901..RoDexLog 
+where SenderAID = 0 and SenderGID =0
+and logtime between '2019-01-09 00:00:00.000'and'2019-01-09 10:00:00.000'
+and SenderCharName ='<MSG>3455</MSG>'
+
+
+select logtime, ReceivedAID, ReceivedGID, ItemID, ItemName, ItemCount 
+into requestlog_20190122..Mjolnir_Rodexlog
+from ItemLog_Mjolnir_201901..RoDexLog 
+where SenderAID = 0 and SenderGID =0
+and logtime between '2019-01-09 00:00:00.000'and'2019-01-09 10:00:00.000'
+and SenderCharName ='<MSG>3455</MSG>'

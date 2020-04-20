@@ -1,0 +1,81 @@
+select * into requestlog_20190129..itemlogAction3 from ItemLog_Baphomet_201901..itemLog where Action=3 and logtime between '2019-01-21 00:00:00.000'and'2019-01-29 00:00:00.000' order by srcCharID
+
+select aid,gid,charname,logoutmoney,logoutdate 
+into requestlog_20190129..logout
+from baphomet.Character.dbo.CharlogOutLog 
+where logoutdate between '2019-01-21 00:00:00.000'and'2019-01-29 00:00:00.000'
+and gid in (
+select srccharid from requestlog_20190129..itemlogAction3)
+
+
+
+
+
+
+
+with CTE as
+(
+SELECT 
+      [srcAccountID]   
+      ,[srcCharID]
+      ,[srcCharName]
+      ,[desAccountID]
+      ,[DESCharID]
+      ,[DESCharName]
+      ,[Zeny]
+      ,[DestZeny]
+      ,[TRNum]
+      ,ROW_NUMBER() over(partition by [TRNum] order by [TRNum]) as rn
+  FROM [requestlog_20190129].[dbo].[itemlogAction3]
+  
+ )
+select * into [requestlog_20190129].[dbo].[itemlog]from CTE where rn=1
+
+
+
+
+
+
+
+
+SELECT  [srcAccountID]
+      ,[srcCharID]
+      ,[srcCharName]
+     , SUM (zeny) as Zeny
+     into [requestlog_20190129].[dbo].[tradeZeny]
+  FROM [requestlog_20190129].[dbo].[itemlog]
+  group by srcaccountid,[srcCharID],[srcCharName]
+
+
+
+with B
+as
+(SELECT a.[aid]
+      ,a.[gid]
+      ,a.[charname]
+      ,a.[logoutmoney], c.zeny
+      ,a.[logoutdate]
+  FROM [requestlog_20190129].[dbo].[logout] a
+  join [requestlog_20190129].[dbo].[tradezeny] c
+  on a.gid =  c.srccharid
+  )
+select * 
+into [requestlog_20190129]..number1answer
+from b where b.logoutmoney<=b.zeny
+
+
+
+
+
+
+
+select aid,charname,gid,clevel,job,money 
+into number1account
+from baphomet.Character.dbo.charinfo where gid in (select gid from [requestlog_20190129].[dbo].[number1answer])
+
+
+
+
+
+
+

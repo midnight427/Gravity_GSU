@@ -1,0 +1,222 @@
+----select count(distinct(AID)) as AID
+----into requestlog_20191120..AIDcount
+----from (select * from baphomet_20191120..charinfo union all select * from darklord_20191120..charinfo union all select * from yggdrasil_20191120..charinfo)n
+
+-----1. 전체 계정수(서버별 / 전체 계정)
+  select 'Baphomet' as Server , count(distinct(AID)) as AID 
+  into requestlog_20191120..AIDcount
+  from baphomet_20191120..charinfo
+
+  insert into requestlog_20191120..AIDcount
+  select 'darklord' as Server , count(distinct(AID)) as AID from darklord_20191120..charinfo
+
+
+  insert into requestlog_20191120..AIDcount
+  select 'yggdrasil' as Server , count(distinct(AID)) as AID from yggdrasil_20191120..charinfo
+
+insert into requestlog_20191120..AIDcount
+select 'Total' as Server, count(distinct(AID)) as AID
+from (select * from baphomet_20191120..charinfo union all select * from darklord_20191120..charinfo union all select * from yggdrasil_20191120..charinfo)n
+
+
+-----2. 전체 캐릭터 수
+
+
+select 'Baphomet' as Server ,count(GID) as  count
+--into requestlog_20191120..CharacterCount 
+from baphomet_20191120..charinfo
+
+insert into requestlog_20191120..CharacterCount 
+select 'Darklord' as Server ,count(GID) as  count
+from Darklord_20191120..charinfo
+
+insert into requestlog_20191120..CharacterCount 
+select 'Yggdrasil' as Server ,count(GID) as  count
+from Yggdrasil_20191120..charinfo
+
+
+  insert into requestlog_20191120..CharacterCount 
+  select 'Total'as server, SUM([count]) as count from [requestlog_20191120].[dbo].[CharacterCount]
+  
+
+-----3. 레벨 분포도
+
+--3-1 전체
+select 'Lv1' as Level, count(gid) as Count
+into requestlog_20191120..TotalLevel
+from (select * from baphomet_20191120..charinfo union all select * from darklord_20191120..charinfo union all select * from yggdrasil_20191120..charinfo)n
+where n.clevel=1
+
+insert into requestlog_20191120..TotalLevel
+select 'Lv2' as Level, count(gid) as Count
+from (select * from baphomet_20191120..charinfo union all select * from darklord_20191120..charinfo union all select * from yggdrasil_20191120..charinfo)n
+where n.clevel=2
+
+insert into requestlog_20191120..TotalLevel
+select 'Lv3' as Level, count(gid) as Count
+from (select * from baphomet_20191120..charinfo union all select * from darklord_20191120..charinfo union all select * from yggdrasil_20191120..charinfo)n
+where n.clevel=3
+
+
+---------cursor---------
+declare @num int
+declare cur cursor for select num from requestlog_20191120..num order by num
+open cur
+fetch next from cur into @num
+
+--select @num
+
+--close cur
+--deallocate cur
+
+while (@@FETCH_STATUS=0)
+begin
+if @num<=200
+begin
+insert into requestlog_20191120..TotalLevel
+select 'Lv'+convert(varchar,@num) as Level, count(gid) as Count
+from (select * from baphomet_20191120..charinfo union all select * from darklord_20191120..charinfo union all select * from yggdrasil_20191120..charinfo)n
+where n.clevel=@num
+
+fetch next from cur into @num
+end
+end
+
+---------cursor---------
+
+--3-2 바포
+
+
+
+select 'Lv1' as Level, count(gid) as Count
+into requestlog_20191120..BaphometLevel
+from baphomet_20191120..charinfo
+where clevel=1
+
+insert into requestlog_20191120..BaphometLevel
+select 'Lv2' as Level, count(gid) as Count
+from baphomet_20191120..charinfo
+where clevel=2
+
+insert into requestlog_20191120..BaphometLevel
+select 'Lv3' as Level, count(gid) as Count
+from baphomet_20191120..charinfo
+where clevel=3
+
+
+---------cursor---------
+declare @num int
+declare cur cursor for select num from requestlog_20191120..num order by num
+open cur
+fetch next from cur into @num
+
+--select @num
+
+--close cur
+--deallocate cur
+
+while (@@FETCH_STATUS=0)
+begin
+if @num<=200
+begin
+insert into requestlog_20191120..BaphometLevel
+select 'Lv'+convert(varchar,@num) as Level, count(gid) as Count
+from baphomet_20191120..charinfo
+where clevel=@num
+
+fetch next from cur into @num
+end
+end
+
+---------cursor---------
+--3-3 다크로드
+
+
+
+select 'Lv1' as Level, count(gid) as Count
+into requestlog_20191120..DarklordLevel
+from Darklord_20191120..charinfo
+where clevel=1
+
+insert into requestlog_20191120..DarklordLevel
+select 'Lv2' as Level, count(gid) as Count
+from Darklord_20191120..charinfo
+where clevel=2
+
+insert into requestlog_20191120..DarklordLevel
+select 'Lv3' as Level, count(gid) as Count
+from Darklord_20191120..charinfo
+where clevel=3
+
+
+---------cursor---------
+declare @num int
+declare cur cursor for select num from requestlog_20191120..num order by num
+open cur
+fetch next from cur into @num
+
+--select @num
+
+--close cur
+--deallocate cur
+
+while (@@FETCH_STATUS=0)
+begin
+if @num<=200
+begin
+insert into requestlog_20191120..DarklordLevel
+select 'Lv'+convert(varchar,@num) as Level, count(gid) as Count
+from Darklord_20191120..charinfo
+where clevel=@num
+
+fetch next from cur into @num
+end
+end
+
+---------cursor---------
+
+--3.3 이그
+
+
+
+select 'Lv1' as Level, count(gid) as Count
+into requestlog_20191120..YggdrasilLevel
+from Yggdrasil_20191120..charinfo
+where clevel=1
+
+insert into requestlog_20191120..YggdrasilLevel
+select 'Lv2' as Level, count(gid) as Count
+from Yggdrasil_20191120..charinfo
+where clevel=2
+
+insert into requestlog_20191120..YggdrasilLevel
+select 'Lv3' as Level, count(gid) as Count
+from Yggdrasil_20191120..charinfo
+where clevel=3
+
+
+---------cursor---------
+declare @num int
+declare cur cursor for select num from requestlog_20191120..num order by num
+open cur
+fetch next from cur into @num
+
+--select @num
+
+--close cur
+--deallocate cur
+
+while (@@FETCH_STATUS=0)
+begin
+if @num<=200
+begin
+insert into requestlog_20191120..YggdrasilLevel
+select 'Lv'+convert(varchar,@num) as Level, count(gid) as Count
+from Yggdrasil_20191120..charinfo
+where clevel=@num
+
+fetch next from cur into @num
+end
+end
+
+---------cursor---------

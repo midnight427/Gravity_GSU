@@ -1,0 +1,215 @@
+select COUNT(*) from baphomet_20190910..toolkit_summary
+select COUNT(*) from brynhild_20190910..toolkit_summary
+
+/*
+select top 100 * from baphomet_20190910..toolkit_summary order by logtime
+select top 100 * from brynhild_20190910..toolkit_summary order by logtime
+
+
+select top 100 * from baphomet_20190910..toolkit_summary order by logtime desc
+select top 100 * from brynhild_20190910..toolkit_summary order by logtime desc
+
+truncate table baphomet_20190910..toolkit_summary
+truncate table brynhild_20190910..toolkit_summary
+*/
+ select RepositoryName
+ FROM [baphomet_20190910].[dbo].[toolkit_summary]
+ where itid=25223 
+ group by RepositoryName
+ 
+ select *
+ FROM [baphomet_20190910].[dbo].[toolkit_summary]
+ where itid=25223
+ 
+ 
+ ---------
+select * from baphomet_20190910..toolkit_summary a where ITID =25223 order by 2
+
+--alter table  baphomet_20190910..toolkit_summary add  [aid] int
+--alter table  baphomet_20190910..toolkit_summary add  [gid] int 
+--alter table  baphomet_20190910..toolkit_summary drop column gid
+--alter table  baphomet_20190910..toolkit_summary add  [gdid] int 
+
+update baphomet_20190910..toolkit_summary 
+set aid=Key1 where Key2=1 and ITID =25223 and RepositoryName in ('store')-------12881
+
+update baphomet_20190910..toolkit_summary 
+set aid=Key1 where Key2=2 and ITID =25223 and RepositoryName in ('store')-------3260
+
+update baphomet_20190910..toolkit_summary 
+set aid=Key1 where Key2=3 and ITID =25223 and RepositoryName in ('store')-------1
+
+update baphomet_20190910..toolkit_summary 
+set aid=Key1 where Key2=101 and ITID =25223 and RepositoryName in ('store')-------386
+
+
+select * from baphomet_20190910..toolkit_summary a where ITID =25223 and RepositoryName in ('inventory') --23478
+
+update baphomet_20190910..toolkit_summary
+set AID=b.AID
+from baphomet_20190910..toolkit_summary a
+join baphomet_20190910..charinfo b on a.key1=b.GID
+where Key2=0 and ITID =25223 and RepositoryName in ('inventory')--23478
+
+select * from baphomet_20190910..toolkit_summary a where ITID =25223 and RepositoryName in ('cart')
+
+select * from baphomet_20190910..toolkit_summary a where ITID =25223 and RepositoryName in ('mail')
+
+select * from baphomet_20190910..toolkit_summary a where ITID =25223 and aid is null
+
+--1180rows
+
+select AID,itid,SUM(cnt) as count
+into requestlog_20190910..바_Data1_낙원단주화소지자
+from baphomet_20190910..toolkit_summary a 
+where ITID =25223 and RepositoryName !='mail' 
+group by aid,itid
+
+
+
+---------------------------------------
+--select * from accumdb.connect201906.dbo.connectlog
+
+with a as (
+select *
+from requestlog_20190910..바_Data1_낙원단주화소지자
+where aid in (select aid from accumdb.connect201906.dbo.connectlog union all
+select aid from accumdb.connect201907.dbo.connectlog union all
+select aid from accumdb.connect201908.dbo.connectlog
+))
+select * from a--13142
+
+with a as (
+select *
+from requestlog_20190910..Data1_낙원단주화소지자
+where aid in (select aid from accumdb.connect201906.dbo.connectlog union all
+select aid from accumdb.connect201907.dbo.connectlog union all
+select aid from accumdb.connect201908.dbo.connectlog
+))
+
+select aid, MAX(login) as Last_login
+into requestlog_20190910..Data2_낙원단주화소지자_678월_tmp
+from (select * from accumdb.connect201906.dbo.connectlog union all
+select * from accumdb.connect201907.dbo.connectlog union all
+select * from accumdb.connect201908.dbo.connectlog
+)b
+where b.aid in (select aid from a)
+group by b.aid
+
+SELECT  b.*,a.last_login
+into [requestlog_20190910].[dbo].[바_Data2_낙원단주화소지자_678월]
+  FROM [requestlog_20190910].[dbo].[바_Data2_낙원단주화소지자_678월_tmp] a
+  join [requestlog_20190910].[dbo].바_Data1_낙원단주화소지자 b
+  on a.aid = b.aid
+  order by 1   --13142
+
+=========================================================
+
+
+select COUNT(*) from yggdrasil_20190910..toolkit_summary
+select COUNT(*) from brynhild_20190910..toolkit_summary
+
+/*
+select top 100 * from yggdrasil_20190910..toolkit_summary order by logtime
+select top 100 * from brynhild_20190910..toolkit_summary order by logtime
+
+
+select top 100 * from yggdrasil_20190910..toolkit_summary order by logtime desc
+select top 100 * from brynhild_20190910..toolkit_summary order by logtime desc
+
+truncate table yggdrasil_20190910..toolkit_summary
+truncate table brynhild_20190910..toolkit_summary
+*/
+ select RepositoryName
+ FROM [yggdrasil_20190910].[dbo].[toolkit_summary]
+ where itid=25223 
+ group by RepositoryName
+ --Inventory
+--Store
+ select *
+ FROM [yggdrasil_20190910].[dbo].[toolkit_summary]
+ where itid=25223
+ --7497
+ 
+ ---------
+select * from yggdrasil_20190910..toolkit_summary a where ITID =25223 order by 2
+
+--alter table  yggdrasil_20190910..toolkit_summary add  [aid] int
+--alter table  yggdrasil_20190910..toolkit_summary add  [gid] int 
+--alter table  yggdrasil_20190910..toolkit_summary drop column gid
+--alter table  yggdrasil_20190910..toolkit_summary add  [gdid] int 
+
+update yggdrasil_20190910..toolkit_summary 
+set aid=Key1 where Key2=1 and ITID =25223 and RepositoryName in ('store')-------1885
+
+update yggdrasil_20190910..toolkit_summary 
+set aid=Key1 where Key2=2 and ITID =25223 and RepositoryName in ('store')-------886
+
+update yggdrasil_20190910..toolkit_summary 
+set aid=Key1 where Key2=3 and ITID =25223 and RepositoryName in ('store')-------0
+
+update yggdrasil_20190910..toolkit_summary 
+set aid=Key1 where Key2=101 and ITID =25223 and RepositoryName in ('store')-------23
+
+
+select * from yggdrasil_20190910..toolkit_summary a where ITID =25223 and RepositoryName in ('inventory') --4723
+
+update yggdrasil_20190910..toolkit_summary
+set AID=b.AID
+from yggdrasil_20190910..toolkit_summary a
+join yggdrasil_20190910..charinfo b on a.key1=b.GID
+where Key2=0 and ITID =25223 and RepositoryName in ('inventory')--4723
+
+select * from yggdrasil_20190910..toolkit_summary a where ITID =25223 and RepositoryName in ('cart')
+
+select * from yggdrasil_20190910..toolkit_summary a where ITID =25223 and RepositoryName in ('mail')
+
+select * from yggdrasil_20190910..toolkit_summary a where ITID =25223 and aid is null
+
+--3910rows
+
+select AID,itid,SUM(cnt) as count
+--into requestlog_20190910..이그_Data1_낙원단주화소지자
+from yggdrasil_20190910..toolkit_summary a 
+where ITID =25223 and RepositoryName !='mail' 
+group by aid,itid
+
+
+
+---------------------------------------
+--select * from accumdb.connect201906.dbo.connectlog
+
+with a as (
+select *
+from requestlog_20190910..이그_Data1_낙원단주화소지자
+where aid in (select aid from accumdb.connect201906.dbo.connectlog union all
+select aid from accumdb.connect201907.dbo.connectlog union all
+select aid from accumdb.connect201908.dbo.connectlog
+))
+select * from a--2701
+
+with a as (
+select *
+from requestlog_20190910..이그_Data1_낙원단주화소지자
+where aid in (select aid from accumdb.connect201906.dbo.connectlog union all
+select aid from accumdb.connect201907.dbo.connectlog union all
+select aid from accumdb.connect201908.dbo.connectlog
+))
+
+select aid, MAX(login) as Last_login
+into requestlog_20190910..이그_Data2_낙원단주화소지자_678월_tmp
+from (select * from accumdb.connect201906.dbo.connectlog union all
+select * from accumdb.connect201907.dbo.connectlog union all
+select * from accumdb.connect201908.dbo.connectlog
+)b
+where b.aid in (select aid from a)
+group by b.aid
+
+SELECT  b.*,a.last_login
+into [requestlog_20190910].[dbo].[이그_Data2_낙원단주화소지자_678월]
+  FROM [requestlog_20190910].[dbo].[이그_Data2_낙원단주화소지자_678월_tmp] a
+  join [requestlog_20190910].[dbo].이그_Data1_낙원단주화소지자 b
+  on a.aid = b.aid
+  order by 1   --2701
+
+=========================================================

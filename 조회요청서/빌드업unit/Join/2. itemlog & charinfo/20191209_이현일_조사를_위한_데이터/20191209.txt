@@ -1,0 +1,68 @@
+select top 100000 * 
+into requestlog_20191209_ygg..Data4  
+from ItemLog_yggdrasil_201912..itemlog
+where MapName='job_thief1.gat'
+and action in (0,1,3)
+--and convert(varchar(10),logtime,23)=  '2019-09-01'
+--and [index] > (    select max([index]) from requestlog_20191209_dark..Data4   )
+order by [index]
+
+
+
+Declare @SQL1 varchar(400)
+declare @a int
+
+declare cur cursor for select [identity] from [requestlog_20191209_bapho].[dbo].[TMP] order by [identity] 
+open cur
+fetch next from cur into @a
+
+while (@@FETCH_STATUS=0)
+
+begin
+
+--Declare @SQL1 varchar(400)
+--declare @a int set @a=1
+set @SQL1 = ' select b.aid, b.gid, b.charname, a.logtime, b.job, a.action
+into requestlog_20191211_bapho..Data'+convert(varchar(10),@a)+' from requestlog_20191209_bapho..Data' +convert(varchar(10),@a)+' a join baphomet.character.dbo.charinfo b
+on a.srcCharID=b.gid '
+
+--select @SQL1
+  Exec(@sql1)
+
+  fetch next from cur into @a
+  
+  end
+
+  /*
+select b.aid, b.gid, b.charname, a.logtime, b.job, a.action
+into requestlog_20191211_bapho..Data1
+from requestlog_20191209_bapho..Data1 a
+join baphomet.character.dbo.charinfo b
+on a.srcCharID=b.gid 
+
+*/
+
+
+select b.aid, b.gid, b.charname, a.logtime, b.job, a.action
+into requestlog_20191211_ygg..Data1
+from requestlog_20191209_ygg..Data1 a
+join yggdrasil.character.dbo.charinfo b
+on a.srcCharID=b.gid 
+
+select b.aid, b.gid, b.charname, a.logtime, b.job, a.action
+into requestlog_20191211_ygg..Data2
+from requestlog_20191209_ygg..Data2 a
+join yggdrasil.character.dbo.charinfo b
+on a.srcCharID=b.gid 
+
+select b.aid, b.gid, b.charname, a.logtime, b.job, a.action
+into requestlog_20191211_ygg..Data3
+from requestlog_20191209_ygg..Data3 a
+join yggdrasil.character.dbo.charinfo b
+on a.srcCharID=b.gid 
+
+select b.aid, b.gid, b.charname, a.logtime, b.job, a.action
+into requestlog_20191211_ygg..Data4
+from requestlog_20191209_ygg..Data4 a
+join yggdrasil.character.dbo.charinfo b
+on a.srcCharID=b.gid 

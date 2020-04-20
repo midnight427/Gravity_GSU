@@ -1,0 +1,50 @@
+select 
+n.[server],n.accountID as AID, n.characterID as GID,n.[date], n.characterName,n.itemid,b.[name] as ItemName,n.itemlevel
+--into requestlog_20190502_refining..Refining11
+ from 
+(select 'Baphomet' as [Server],* from ItemLog_Baphomet_201904..refiningLog union all
+select 'Baphomet' as [Server],* from ItemLog_Baphomet_201905..refiningLog union all
+select 'Baphomet' as [Server],* from baphomet.itemlog.dbo.refiningLog  union all
+
+select 'Brynhild' as [Server],* from ItemLog_Brynhild_201904..refiningLog union all
+select 'Brynhild' as [Server],* from ItemLog_Brynhild_201905..refiningLog union all
+select 'Brynhild' as [Server],* from Brynhild.itemlog.dbo.refiningLog  union all
+
+select 'yggdrasil' as [Server],* from ItemLog_yggdrasil_201904..refiningLog union all
+select 'yggdrasil' as [Server],* from ItemLog_yggdrasil_201905..refiningLog union all
+select 'yggdrasil' as [Server],* from yggdrasil.itemlog.dbo.refiningLog) n
+join  baphomet.script.dbo.viewitemlist b 
+on n.itemid=b.id
+
+where  itemlevel =11 and [date] between '2019-04-03 10:00:00.000'and'2019-05-02 10:00:00.000'
+order by [date]
+
+
+>11~19±îÁö
+
+with test as 
+(select 
+n.[server],n.accountID as AID, n.characterID as GID,n.[date], n.characterName,n.itemid,b.[name] as ItemName,n.itemlevel,ROW_NUMBER() over (partition by characterID order by itemlevel desc) as num
+--into requestlog_20190502_refining..Refining20
+ from 
+(select 'Baphomet' as [Server],* from ItemLog_Baphomet_201904..refiningLog union all
+select 'Baphomet' as [Server],* from ItemLog_Baphomet_201905..refiningLog union all
+select 'Baphomet' as [Server],* from baphomet.itemlog.dbo.refiningLog  union all
+
+select 'Brynhild' as [Server],* from ItemLog_Brynhild_201904..refiningLog union all
+select 'Brynhild' as [Server],* from ItemLog_Brynhild_201905..refiningLog union all
+select 'Brynhild' as [Server],* from Brynhild.itemlog.dbo.refiningLog  union all
+
+select 'yggdrasil' as [Server],* from ItemLog_yggdrasil_201904..refiningLog union all
+select 'yggdrasil' as [Server],* from ItemLog_yggdrasil_201905..refiningLog union all
+select 'yggdrasil' as [Server],* from yggdrasil.itemlog.dbo.refiningLog) n
+join  baphomet.script.dbo.viewitemlist b 
+on n.itemid=b.id
+
+where  itemlevel >=11 and itemlevel !=10000 and [date] between '2019-04-03 10:00:00.000'and'2019-05-02 10:00:00.000'
+) select [server],	AID,	GID,	[date],	characterName,	itemid,	ItemName,	itemlevel
+into requestlog_20190502_refining..RefiningUnique
+from test
+--group by [server],aid,gid,characterName
+where num=1
+order by [server],[aid],gid

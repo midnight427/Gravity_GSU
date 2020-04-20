@@ -1,0 +1,47 @@
+
+--RO1----------------------------------------------------------------
+USE [STATE]
+GO
+/****** Object:  StoredProcedure [dbo].[usp_RO1_MARBLE_Event_ItemSet]    Script Date: 08/08/2019 09:19:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[usp_RO1_MARBLE_Event_ItemSet]
+	@AID INT,
+	@ItemID INT,
+	@ItemCNT INT
+AS
+SET NOCOUNT ON
+BEGIN
+	EXEC GLOBALINFO.[EventDB].dbo.SET_MARBLE_INS @AID,@ItemID,@ItemCNT
+END
+SET NOCOUNT OFF 
+
+
+----------------------------------------------------
+GRANT EXECUTE ON [dbo].[usp_RO1_MARBLE_Event_ItemSet] TO [WebUser]
+
+--ROZ---------------------------------------------------------------------
+
+
+USE [STATE]
+GO
+/****** Object:  StoredProcedure [dbo].[usp_RO1_MARBLE_Event_ItemSet]    Script Date: 08/08/2019 09:19:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[usp_RO1_MARBLE_Event_ItemSet]
+	@AID INT,
+	@ItemID INT,
+	@ItemCNT INT
+AS
+SET NOCOUNT ON
+BEGIN
+	EXEC GLOBALINFO.[EventDB].dbo.SET_MARBLE_INS @AID,@ItemID,@ItemCNT
+END
+SET NOCOUNT OFF 
+
+----------------------------------------
+GRANT EXECUTE ON [dbo].[usp_ROZ_MARBLE_Event_ItemSet] TO [WebUser]

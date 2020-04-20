@@ -1,0 +1,182 @@
+USE [EventDB]
+GO
+/****** Object:  StoredProcedure [dbo].[set_realTimeRodex_20190202]    Script Date: 01/30/2019 17:58:36 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+ALTER PROCEDURE [dbo].[set_realTimeRodex_20190202]
+	@AID int
+AS
+
+SET NOCOUNT ON
+
+DECLARE @TEMP INT
+SET @TEMP = 0
+
+select @TEMP = 1 FROM EventDB.dbo.EventDB_NO
+where AID = @AID and remark = '설연휴(02/02~06)'
+and convert(char(10),LoginDate,120) = convert(char(10),getdate(),120)
+
+--캐릭터 선택창 진입 유저 포함 
+-- 이벤트 당첨자 로그 생성  
+
+IF (@TEMP <> 1)
+BEGIN
+
+-- 존다NPC 아이템 생성(QA팀 테스터 포함)  
+-- 아이템 만료일자는 1개월로 지정(운영팀요청)
+ DECLARE @I_expireDate datetime
+ SET @I_expireDate = DATEADD(month,1,getdate())
+ --SET @I_expireDate = '2019-01-02 23:59:59.000'
+ 
+ DECLARE @Mid BIGINT
+
+--RODEX 지급 Log 기록
+ INSERT INTO EventDB.dbo.EventDB_NO(regDate, AID, GID, ItemID,ItemCNT, SvrName, LoginDate,remark,NUM)  
+ Values (getdate(), @AID, 0,25464,3,'',GETDATE(),'설연휴(02/02~06)'
+ ,(select COUNT(AID) from EventDB.dbo.EventDB_NO where AID = @AID and remark = '설연휴(02/02~06)')+1)
+
+ INSERT INTO Globalinfo.dbo.RoDex (AID, Sendername, title,text, itemid, itemcnt,ExpireDate)
+ VALUES (@AID,'운영진','설 연휴 기념 아이템 지급','설 연휴를 맞이하여 2/2 ~ 2/6까지 매일 월드이동권을 드립니다.'
+,25464,3,@I_expireDate) 
+
+ IF 0 < @@ROWCOUNT        
+	BEGIN		
+		
+		SET @Mid = SCOPE_IDENTITY()      
+			   
+		INSERT INTO [MobileEventLog].[dbo].[RoDexLog]( [MID],[AID],[SenderCharName],[ItemID],[ItemCount],[ExpireDate] )               
+		VALUES( @Mid, @AID,'운영진',25464,3,@I_expireDate )   
+	END
+END
+
+SET NOCOUNT OFF
+
+
+---------------------------------
+2
+
+
+USE [EventDB]
+GO
+/****** Object:  StoredProcedure [dbo].[set_realTimeRodex_20190206]    Script Date: 01/30/2019 18:17:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+ALTER PROCEDURE [dbo].[set_realTimeRodex_20190206]
+	@AID int
+AS
+
+SET NOCOUNT ON
+
+DECLARE @TEMP INT
+SET @TEMP = 0
+
+select @TEMP = 1 FROM EventDB.dbo.EventDB_NO
+where AID = @AID and remark = '설연휴(02/06)'
+and convert(char(10),LoginDate,120) = convert(char(10),getdate(),120)
+
+--캐릭터 선택창 진입 유저 포함 
+-- 이벤트 당첨자 로그 생성  
+
+IF (@TEMP <> 1)
+BEGIN
+
+-- 존다NPC 아이템 생성(QA팀 테스터 포함)  
+-- 아이템 만료일자는 1개월로 지정(운영팀요청)
+ DECLARE @I_expireDate datetime
+ SET @I_expireDate = DATEADD(month,1,getdate())
+ --SET @I_expireDate = '2019-01-02 23:59:59.000'
+ 
+ DECLARE @Mid BIGINT
+
+--RODEX 지급 Log 기록
+ INSERT INTO EventDB.dbo.EventDB_NO(regDate, AID, GID, ItemID,ItemCNT, SvrName, LoginDate,remark,NUM)  
+ Values (getdate(), @AID, 0,14533,2,'',GETDATE(),'설연휴(02/06)'
+ ,(select COUNT(AID) from EventDB.dbo.EventDB_NO where AID = @AID and remark = '설연휴(02/06)')+1)
+
+ INSERT INTO Globalinfo.dbo.RoDex (AID, Sendername, title,text, itemid, itemcnt,ExpireDate)
+ VALUES (@AID,'운영진','설 연휴 기념 아이템 지급','설 연휴를 맞이하여 소정의 아이템을 지급해 드립니다. 라그나로크와 올해도 즐거운 한 해 되시길 바랍니다.'
+,14533,2,@I_expireDate) 
+
+ IF 0 < @@ROWCOUNT        
+	BEGIN		
+		
+		SET @Mid = SCOPE_IDENTITY()      
+			   
+		INSERT INTO [MobileEventLog].[dbo].[RoDexLog]( [MID],[AID],[SenderCharName],[ItemID],[ItemCount],[ExpireDate] )               
+		VALUES( @Mid, @AID,'운영진',14533,2,@I_expireDate )   
+	END
+END
+
+SET NOCOUNT OFF
+----------------------------------
+
+ALTER PROCEDURE [dbo].[usp_acc_user_add2]
+	@State					INT,
+	@SecurityCode			INT,
+	@AID					INT,
+	@IP						INT,
+	@PresentSID				INT,
+	@IsGameStarted			INT,
+    	@tu_nPayType			INT,
+    	@tu_nAmountRemain		INT,
+    	@tu_nQuantityRemain		INT,
+	@tu_SeqNum				INT,
+	@tu_UserNum				INT,
+	@tu_bIsLoginSucceeded	INT,
+	@tu_isHanGameUser		TINYINT,
+	@tu_sex					TINYINT,
+	@SVR_TYPE				TINYINT, -- 무료화섭 구분자 1일경우 무료화섭유저임
+	@Login_TYPE				TINYINT,  -- 접속구분( 0 : 일반접속, 1 : PC방접속)
+	@tu_AccSID				INT
+AS
+	SET NOCOUNT ON
+
+	INSERT INTO t_user (
+		tu_state,
+		tu_securityCode,
+		tu_AID,
+		tu_ip,
+		tu_presentSID,
+		tu_isGameStarted,
+		tu_nPayType,
+		tu_nAmountRemain,
+		tu_nQuantityRemain,
+		tu_SeqNum,
+		tu_UserNum,
+		tu_IsLoginSucceeded,
+		tu_isHanGameUser,
+		tu_sex,
+		SVR_TYPE,
+		[Login_TYPE], 
+		tu_AccSID)
+	VALUES(
+		@State, 
+		@SecurityCode,  
+		@AID,  
+		@IP, 
+		@PresentSID, 
+		@IsGameStarted, 
+		@tu_nPayType, 
+		@tu_nAmountRemain, 
+		@tu_nQuantityRemain,
+		@tu_SeqNum,  
+		@tu_UserNum,
+		@tu_bIsLoginSucceeded,
+		@tu_isHanGameUser, 
+		@tu_sex,
+		@SVR_TYPE,
+		@Login_TYPE, 
+		@tu_AccSID)
+
+EXEC [EVENTDB].[DBO].[set_realTimeRodex_20190202] @AID
+EXEC [EVENTDB].[DBO].[set_realTimeRodex_20190206] @AID
+
+SET NOCOUNT OFF

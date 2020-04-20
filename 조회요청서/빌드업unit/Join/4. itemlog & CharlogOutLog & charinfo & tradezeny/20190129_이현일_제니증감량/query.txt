@@ -1,0 +1,17 @@
+--select top 10 * from ItemLog_Brynhild_201901..itemLog where CONVERT(char(10),logtime,21)='2019-01-28'
+
+select logtime,srcAccountID,srcCharName,srcCharID,desAccountID,DESCharID,DESCharName, ItemID,ItemName,ItemCount,Zeny 
+into requestlog_20190129..baphometItemlog
+from ItemLog_baphomet_201901..itemLog 
+where Action =6 and logtime between '2019-01-21 00:00:00.000'and'2019-01-29 00:00:00.000'
+and itemid in (7444,969,7228,7230,7229,12399,732) order by itemid
+
+select logtime,srcAccountID,srcCharName,srcCharID,ItemID,ItemName,ItemCount,Zeny 
+into requestlog_20190129..mjolnirItemlog
+from (
+select * from ItemLog_mjolnir_201811..itemLog union all
+select * from ItemLog_mjolnir_201812..itemLog union all
+select * from ItemLog_mjolnir_201901..itemLog 
+)n
+where Action =6 and logtime between '2018-11-14 00:00:00.000'and'2019-01-29 00:00:00.000'
+and itemid in (7444,969,7228,732) order by itemid

@@ -1,0 +1,53 @@
+select * from brynhild_20191211_killall..GuildInfoDB where Name in ('Á©½ºÅ¸','·¯ºí','³¶¸¸') 
+--gdid level name
+--936	29	³¶¸¸
+--1038	43	·¯ºí
+--1076	39	Á©½ºÅ¸
+
+select a.AID, a.GID, b.CharName 
+into requestlog_20191218..ºê·ôÈúÆ®_³¶¸¸
+from brynhild_20191211_killall..GuildMInfo a
+join brynhild_20191211_killall..charinfo b
+on a.GID = b.GID 
+where GDID =936
+
+select a.AID, a.GID, b.CharName 
+into requestlog_20191218..ºê·ôÈúÆ®_·¯ºí
+from brynhild_20191211_killall..GuildMInfo a
+join brynhild_20191211_killall..charinfo b
+on a.GID = b.GID 
+where GDID =1038
+
+select a.AID, a.GID, b.CharName 
+into requestlog_20191218..ºê·ôÈúÆ®_Á©½ºÅ¸
+from brynhild_20191211_killall..GuildMInfo a
+join brynhild_20191211_killall..charinfo b
+on a.GID = b.GID 
+where GDID =1076
+
+select * from mjolnir_20191211_killall..GuildInfoDB where Name in ('¼ºÁ÷ÀÚ¿¬ÇÕ','¸Ó½ºÅ¶Æ¼¾î','ºí·¢') 
+--GDID	Level	Name
+--394	50	¸Ó½ºÅ¶Æ¼¾î
+--50	50	ºí·¢
+--424	50	¼ºÁ÷ÀÚ¿¬ÇÕ
+
+select a.AID, a.GID, b.CharName 
+into requestlog_20191218..¹¦¸£´Ò_¸Ó½ºÅ¶Æ¼¾î
+from mjolnir_20191211_killall..GuildMInfo a
+join mjolnir_20191211_killall..charinfo b
+on a.GID = b.GID 
+where GDID =394
+
+select a.AID, a.GID, b.CharName 
+into requestlog_20191218..¹¦¸£´Ò_ºí·¢
+from mjolnir_20191211_killall..GuildMInfo a
+join mjolnir_20191211_killall..charinfo b
+on a.GID = b.GID 
+where GDID =50
+
+select a.AID, a.GID, b.CharName 
+into requestlog_20191218..¹¦¸£´Ò_¼ºÁ÷ÀÚ¿¬ÇÕ
+from mjolnir_20191211_killall..GuildMInfo a
+join mjolnir_20191211_killall..charinfo b
+on a.GID = b.GID 
+where GDID =424

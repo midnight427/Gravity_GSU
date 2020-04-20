@@ -1,0 +1,13 @@
+BCP requestlog_20191125_charles.dbo.CharConnectLog_Yggdrasil OUT D:\Share\20191125_박기철_로그데이터\CharConnectLog_Yggdrasil.csv -T -c
+
+BCP requestlog_20191125_charles.dbo.createCharacterLog_Yggdrasil OUT D:\Share\20191125_박기철_로그데이터\createCharacterLog_Yggdrasil.csv -T -c
+
+BCP requestlog_20191125_charles.dbo.ItemLog_Yggdrasil OUT D:\Share\20191125_박기철_로그데이터\ItemLog_Yggdrasil.csv -T -c
+
+BCP requestlog_20191125_charles.dbo.LevelandJobChangeLog_Yggdrasil OUT D:\Share\20191125_박기철_로그데이터\LevelandJobChangeLog_Yggdrasil.csv -T -c
+
+BCP requestlog_20191125_charles.dbo.refiningLog_Yggdrasil OUT D:\Share\20191125_박기철_로그데이터\refiningLog_Yggdrasil.csv -T -c
+
+BCP requestlog_20191125_charles.dbo.scriptlog_Yggdrasil OUT D:\Share\20191125_박기철_로그데이터\scriptlog_Yggdrasil.csv -T -c
+
+

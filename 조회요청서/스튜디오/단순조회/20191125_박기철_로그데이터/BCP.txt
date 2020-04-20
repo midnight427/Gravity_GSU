@@ -1,0 +1,38 @@
+BCP requestlog_20191125_charles.dbo.CharConnectLog_Baphomet OUT D:\Share\20191125_박기철_로그데이터\CharConnectLog_Baphomet.csv -T -c
+BCP requestlog_20191125_charles.dbo.CharConnectLog_Brynhild OUT D:\Share\20191125_박기철_로그데이터\CharConnectLog_Brynhild.csv -T -c
+BCP requestlog_20191125_charles.dbo.CharConnectLog_DarkLord OUT D:\Share\20191125_박기철_로그데이터\CharConnectLog_DarkLord.csv -T -c
+BCP requestlog_20191125_charles.dbo.CharConnectLog_Mjolnir OUT D:\Share\20191125_박기철_로그데이터\CharConnectLog_Mjolnir.csv -T -c
+BCP requestlog_20191125_charles.dbo.CharConnectLog_Yggdrasil OUT D:\Share\20191125_박기철_로그데이터\CharConnectLog_Yggdrasil.csv -T -c
+
+BCP requestlog_20191125_charles.dbo.createCharacterLog_Baphomet OUT D:\Share\20191125_박기철_로그데이터\createCharacterLog_Baphomet.csv -T -c
+BCP requestlog_20191125_charles.dbo.createCharacterLog_Brynhild OUT D:\Share\20191125_박기철_로그데이터\createCharacterLog_Brynhild.csv -T -c
+BCP requestlog_20191125_charles.dbo.CharConnectLog_Baphomet OUT D:\Share\20191125_박기철_로그데이터\CharConnectLog_Baphomet.csv -T -c
+BCP requestlog_20191125_charles.dbo.createCharacterLog_DarkLord OUT D:\Share\20191125_박기철_로그데이터\createCharacterLog_DarkLord.csv -T -c
+BCP requestlog_20191125_charles.dbo.createCharacterLog_Mjolnir OUT D:\Share\20191125_박기철_로그데이터\createCharacterLog_Mjolnir.csv -T -c
+BCP requestlog_20191125_charles.dbo.createCharacterLog_Yggdrasil OUT D:\Share\20191125_박기철_로그데이터\createCharacterLog_Yggdrasil.csv -T -c
+
+BCP requestlog_20191125_charles.dbo.ItemLog_Baphomet OUT D:\Share\20191125_박기철_로그데이터\ItemLog_Baphomet.csv -T -c
+BCP requestlog_20191125_charles.dbo.ItemLog_Brynhild OUT D:\Share\20191125_박기철_로그데이터\ItemLog_Brynhild.csv -T -c
+BCP requestlog_20191125_charles.dbo.ItemLog_DarkLord OUT D:\Share\20191125_박기철_로그데이터\ItemLog_DarkLord.csv -T -c
+BCP requestlog_20191125_charles.dbo.ItemLog_Mjolnir OUT D:\Share\20191125_박기철_로그데이터\ItemLog_Mjolnir.csv -T -c
+BCP requestlog_20191125_charles.dbo.ItemLog_Yggdrasil OUT D:\Share\20191125_박기철_로그데이터\ItemLog_Yggdrasil.csv -T -c
+
+BCP requestlog_20191125_charles.dbo.LevelandJobChangeLog_Baphomet OUT D:\Share\20191125_박기철_로그데이터\LevelandJobChangeLog_Baphomet.csv -T -c
+BCP requestlog_20191125_charles.dbo.LevelandJobChangeLog_Brynhild OUT D:\Share\20191125_박기철_로그데이터\LevelandJobChangeLog_Brynhild.csv -T -c
+BCP requestlog_20191125_charles.dbo.LevelandJobChangeLog_DarkLord OUT D:\Share\20191125_박기철_로그데이터\LevelandJobChangeLog_DarkLord.csv -T -c
+BCP requestlog_20191125_charles.dbo.LevelandJobChangeLog_Mjolnir OUT D:\Share\20191125_박기철_로그데이터\LevelandJobChangeLog_Mjolnir.csv -T -c
+BCP requestlog_20191125_charles.dbo.LevelandJobChangeLog_Yggdrasil OUT D:\Share\20191125_박기철_로그데이터\LevelandJobChangeLog_Yggdrasil.csv -T -c
+
+BCP requestlog_20191125_charles.dbo.refiningLog_Baphomet OUT D:\Share\20191125_박기철_로그데이터\refiningLog_Baphomet.csv -T -c
+BCP requestlog_20191125_charles.dbo.refiningLog_Brynhild OUT D:\Share\20191125_박기철_로그데이터\refiningLog_Brynhild.csv -T -c
+BCP requestlog_20191125_charles.dbo.refiningLog_DarkLord OUT D:\Share\20191125_박기철_로그데이터\refiningLog_DarkLord.csv -T -c
+BCP requestlog_20191125_charles.dbo.refiningLog_Mjolnir OUT D:\Share\20191125_박기철_로그데이터\refiningLog_Mjolnir.csv -T -c
+BCP requestlog_20191125_charles.dbo.refiningLog_Yggdrasil OUT D:\Share\20191125_박기철_로그데이터\refiningLog_Yggdrasil.csv -T -c
+
+BCP requestlog_20191125_charles.dbo.scriptlog_Baphomet OUT D:\Share\20191125_박기철_로그데이터\scriptlog_Baphomet.csv -T -c
+BCP requestlog_20191125_charles.dbo.scriptlog_Brynhild OUT D:\Share\20191125_박기철_로그데이터\scriptlog_Brynhild.csv -T -c
+BCP requestlog_20191125_charles.dbo.scriptlog_DarkLord OUT D:\Share\20191125_박기철_로그데이터\scriptlog_DarkLord.csv -T -c
+BCP requestlog_20191125_charles.dbo.scriptlog_Mjolnir OUT D:\Share\20191125_박기철_로그데이터\scriptlog_Mjolnir.csv -T -c
+BCP requestlog_20191125_charles.dbo.scriptlog_Yggdrasil OUT D:\Share\20191125_박기철_로그데이터\scriptlog_Yggdrasil.csv -T -c
+
+

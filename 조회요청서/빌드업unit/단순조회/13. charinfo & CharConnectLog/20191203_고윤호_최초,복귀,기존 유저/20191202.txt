@@ -1,0 +1,41 @@
+SELECT * 
+into requestlog_20191202..Data1_Mjolnir
+FROM requestlog_20191202..MjolnirAID 
+where aid in (select aid from itemlog_mjolnir_201911..[CharConnectLog])
+
+SELECT * 
+into requestlog_20191202..Data1_brynhild
+FROM requestlog_20191202..brynhildAID 
+where aid in  (select aid from itemlog_brynhild_201911..[CharConnectLog])
+
+with a as(
+select  distinct(AID) from mjolnir.character.dbo.charinfo 
+)
+select aid
+into requestlog_20191202..Data2_mjolnir
+from a 
+where a.aid not in (select aid from  [ItemLog_Mjolnir_201911].[dbo].[CharConnectLog])
+
+with a as(
+select  distinct(AID) from brynhild.character.dbo.charinfo 
+)
+select aid
+into requestlog_20191202..Data2_brynhild
+from a 
+where a.aid not in (select aid from  [ItemLog_brynhild_201911].[dbo].[CharConnectLog])
+
+with a as(
+select  distinct(AID) from mjolnir.character.dbo.charinfo 
+)
+select aid
+into requestlog_20191202..Data3_mjolnir
+from a 
+where a.aid  in (select aid from  [ItemLog_Mjolnir_201911].[dbo].[CharConnectLog])
+
+with a as(
+select  distinct(AID) from brynhild.character.dbo.charinfo 
+)
+select aid
+into requestlog_20191202..Data3_brynhild
+from a 
+where a.aid  in (select aid from  [ItemLog_brynhild_201911].[dbo].[CharConnectLog])

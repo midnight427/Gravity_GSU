@@ -1,0 +1,1200 @@
+with a as (
+SELECT 'baphomet' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_Baphomet_201804..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201805..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201806..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201807..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201808..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201809..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201810..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201811..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201812..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201902..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201903..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201904..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201905..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201906..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201907..LevelandJobChangeLog union all 
+select * from ItemLog_Baphomet_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_Baphomet_201909..LevelandJobChangeLog union all 
+  select * from Baphomet.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from baphomet.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ into requestlog_20190919..룬나이트
+  from a 
+where job in (4060,4096,4054)
+order by ranking
+
+-------------
+with a as (
+SELECT 'baphomet' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_Baphomet_201804..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201805..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201806..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201807..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201808..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201809..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201810..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201811..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201812..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201902..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201903..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201904..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201905..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201906..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201907..LevelandJobChangeLog union all 
+select * from ItemLog_Baphomet_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_Baphomet_201909..LevelandJobChangeLog union all 
+  select * from Baphomet.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from baphomet.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+--insert 
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- into requestlog_20190919..로얄가드
+  from a 
+where job in (4073,4102,4066)
+order by ranking
+
+
+with a as (
+SELECT 'baphomet' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_Baphomet_201804..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201805..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201806..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201807..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201808..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201809..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201810..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201811..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201812..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201902..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201903..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201904..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201905..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201906..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201907..LevelandJobChangeLog union all 
+select * from ItemLog_Baphomet_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_Baphomet_201909..LevelandJobChangeLog union all 
+  select * from Baphomet.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from baphomet.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+--insert 
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- into requestlog_20190919..소서러
+  from a 
+where job in (4074,4103,4067)
+order by ranking
+
+-------------
+with a as (
+SELECT 'baphomet' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_Baphomet_201804..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201805..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201806..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201807..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201808..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201809..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201810..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201811..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201812..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201902..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201903..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201904..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201905..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201906..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201907..LevelandJobChangeLog union all 
+select * from ItemLog_Baphomet_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_Baphomet_201909..LevelandJobChangeLog union all 
+  select * from Baphomet.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from baphomet.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+--insert 
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- into requestlog_20190919..미케닉
+  from a 
+where job in (4064,4100,4058)
+order by ranking
+
+-------------
+with a as (
+SELECT 'baphomet' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_Baphomet_201804..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201805..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201806..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201807..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201808..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201809..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201810..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201811..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201812..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201902..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201903..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201904..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201905..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201906..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201907..LevelandJobChangeLog union all 
+select * from ItemLog_Baphomet_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_Baphomet_201909..LevelandJobChangeLog union all 
+  select * from Baphomet.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from baphomet.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+--insert 
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- into requestlog_20190919..제네릭
+  from a 
+where job in (4078,4107,4071)
+order by ranking
+
+-------------
+
+with a as (
+SELECT 'baphomet' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_Baphomet_201804..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201805..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201806..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201807..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201808..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201809..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201810..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201811..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201812..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201902..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201903..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201904..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201905..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201906..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201907..LevelandJobChangeLog union all 
+select * from ItemLog_Baphomet_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_Baphomet_201909..LevelandJobChangeLog union all 
+  select * from Baphomet.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from baphomet.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+--insert 
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- into requestlog_20190919..아크비숍
+  from a 
+where job in (4063,4099,4057)
+order by ranking
+
+-------------
+with a as (
+SELECT 'baphomet' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_Baphomet_201804..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201805..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201806..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201807..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201808..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201809..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201810..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201811..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201812..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201902..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201903..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201904..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201905..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201906..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201907..LevelandJobChangeLog union all 
+select * from ItemLog_Baphomet_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_Baphomet_201909..LevelandJobChangeLog union all 
+  select * from Baphomet.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from baphomet.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+--insert 
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- into requestlog_20190919..수라
+  from a 
+where job in (4077,4106,4070)
+order by ranking
+
+-------------
+with a as (
+SELECT 'baphomet' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_Baphomet_201804..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201805..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201806..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201807..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201808..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201809..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201810..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201811..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201812..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201902..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201903..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201904..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201905..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201906..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201907..LevelandJobChangeLog union all 
+select * from ItemLog_Baphomet_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_Baphomet_201909..LevelandJobChangeLog union all 
+  select * from Baphomet.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from baphomet.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+--insert 
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- into requestlog_20190919..길로틴크로스
+  from a 
+where job in (4065,4101,4059)
+order by ranking
+
+-------------
+with a as (
+SELECT 'baphomet' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_Baphomet_201804..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201805..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201806..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201807..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201808..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201809..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201810..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201811..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201812..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201902..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201903..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201904..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201905..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201906..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201907..LevelandJobChangeLog union all 
+select * from ItemLog_Baphomet_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_Baphomet_201909..LevelandJobChangeLog union all 
+  select * from Baphomet.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from baphomet.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+--insert 
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- into requestlog_20190919..쉐도우체이서
+  from a 
+where job in (4079,4108,4072)
+order by ranking
+
+-------------
+with a as (
+SELECT 'baphomet' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_Baphomet_201804..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201805..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201806..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201807..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201808..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201809..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201810..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201811..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201812..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201902..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201903..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201904..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201905..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201906..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201907..LevelandJobChangeLog union all 
+select * from ItemLog_Baphomet_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_Baphomet_201909..LevelandJobChangeLog union all 
+  select * from Baphomet.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from baphomet.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+--insert 
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+  into requestlog_20190919..레인져
+  from a 
+where job in (4062,4098,4056)
+order by ranking
+
+-------------
+with a as (
+SELECT 'baphomet' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_Baphomet_201804..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201805..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201806..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201807..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201808..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201809..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201810..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201811..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201812..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201902..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201903..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201904..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201905..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201906..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201907..LevelandJobChangeLog union all 
+select * from ItemLog_Baphomet_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_Baphomet_201909..LevelandJobChangeLog union all 
+  select * from Baphomet.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from baphomet.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+--insert 
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- into requestlog_20190919..민스트럴
+  from a 
+where job in (4075,4104,4068)
+order by ranking
+
+-------------
+with a as (
+SELECT 'baphomet' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_Baphomet_201804..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201805..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201806..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201807..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201808..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201809..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201810..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201811..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201812..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201902..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201903..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201904..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201905..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201906..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201907..LevelandJobChangeLog union all 
+select * from ItemLog_Baphomet_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_Baphomet_201909..LevelandJobChangeLog union all 
+  select * from Baphomet.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from baphomet.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+--insert 
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- into requestlog_20190919..원더러
+  from a 
+where job in (4076,4105,4069)
+order by ranking
+
+-------------
+with a as (
+SELECT 'baphomet' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_Baphomet_201804..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201805..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201806..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201807..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201808..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201809..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201810..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201811..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201812..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201902..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201903..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201904..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201905..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201906..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201907..LevelandJobChangeLog union all 
+select * from ItemLog_Baphomet_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_Baphomet_201909..LevelandJobChangeLog union all 
+  select * from Baphomet.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from baphomet.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+--insert 
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- into requestlog_20190919..성제
+  from a 
+where job in (4239,4241)
+order by ranking
+
+-------------
+with a as (
+SELECT 'baphomet' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_Baphomet_201804..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201805..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201806..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201807..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201808..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201809..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201810..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201811..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201812..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201902..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201903..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201904..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201905..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201906..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201907..LevelandJobChangeLog union all 
+select * from ItemLog_Baphomet_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_Baphomet_201909..LevelandJobChangeLog union all 
+  select * from Baphomet.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from baphomet.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+--insert 
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- into requestlog_20190919..소울리퍼
+  from a 
+where job in (4240,4242)
+order by ranking
+
+-------------
+with a as (
+SELECT 'baphomet' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_Baphomet_201804..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201805..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201806..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201807..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201808..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201809..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201810..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201811..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201812..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201902..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201903..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201904..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201905..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201906..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201907..LevelandJobChangeLog union all 
+select * from ItemLog_Baphomet_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_Baphomet_201909..LevelandJobChangeLog union all 
+  select * from Baphomet.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from baphomet.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+--insert 
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- into requestlog_20190919..카게로우
+  from a 
+where job in (4211,4223)
+order by ranking
+
+-------------
+with a as (
+SELECT 'baphomet' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_Baphomet_201804..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201805..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201806..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201807..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201808..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201809..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201810..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201811..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201812..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201902..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201903..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201904..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201905..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201906..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201907..LevelandJobChangeLog union all 
+select * from ItemLog_Baphomet_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_Baphomet_201909..LevelandJobChangeLog union all 
+  select * from Baphomet.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from baphomet.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+--insert 
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- into requestlog_20190919..오보로
+  from a 
+where job in (4212,4224)
+order by ranking
+
+-------------
+with a as (
+SELECT 'baphomet' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_Baphomet_201804..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201805..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201806..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201807..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201808..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201809..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201810..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201811..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201812..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201902..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201903..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201904..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201905..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201906..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201907..LevelandJobChangeLog union all 
+select * from ItemLog_Baphomet_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_Baphomet_201909..LevelandJobChangeLog union all 
+  select * from Baphomet.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from baphomet.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+--insert 
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- into requestlog_20190919..리벨리온
+  from a 
+where job in (4215,4229)
+order by ranking
+
+-------------
+with a as (
+SELECT 'baphomet' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_Baphomet_201804..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201805..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201806..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201807..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201808..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201809..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201810..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201811..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201812..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201902..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201903..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201904..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201905..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201906..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201907..LevelandJobChangeLog union all 
+select * from ItemLog_Baphomet_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_Baphomet_201909..LevelandJobChangeLog union all 
+  select * from Baphomet.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from baphomet.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+--insert 
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- into requestlog_20190919..리벨리온
+  from a 
+where job in (4215,4229)
+order by ranking
+
+-------------
+with a as (
+SELECT 'baphomet' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_Baphomet_201804..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201805..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201806..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201807..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201808..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201809..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201810..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201811..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201812..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201902..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201903..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201904..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201905..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201906..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201907..LevelandJobChangeLog union all 
+select * from ItemLog_Baphomet_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_Baphomet_201909..LevelandJobChangeLog union all 
+  select * from Baphomet.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from baphomet.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+--insert 
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- into requestlog_20190919..슈퍼노비스
+  from a 
+where job in (4190,4191)
+order by ranking
+
+----------
+with a as (
+SELECT 'baphomet' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_Baphomet_201804..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201805..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201806..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201807..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201808..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201809..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201810..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201811..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201812..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201901..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201902..LevelandJobChangeLog union all  select * from ItemLog_Baphomet_201903..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201904..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201905..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201906..LevelandJobChangeLog union all select * from ItemLog_Baphomet_201907..LevelandJobChangeLog union all 
+select * from ItemLog_Baphomet_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_Baphomet_201909..LevelandJobChangeLog union all 
+  select * from Baphomet.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from baphomet.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+--insert 
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- into requestlog_20190919..소환사
+  from a 
+where job in (4218,4220)
+order by ranking
+
+-------------
+
+===========================================================
+
+with a as (
+SELECT 'darklord' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_darklord_201804..LevelandJobChangeLog union all select * from ItemLog_darklord_201805..LevelandJobChangeLog union all select * from ItemLog_darklord_201806..LevelandJobChangeLog union all select * from ItemLog_darklord_201807..LevelandJobChangeLog union all select * from ItemLog_darklord_201808..LevelandJobChangeLog union all select * from ItemLog_darklord_201809..LevelandJobChangeLog union all select * from ItemLog_darklord_201810..LevelandJobChangeLog union all select * from ItemLog_darklord_201811..LevelandJobChangeLog union all select * from ItemLog_darklord_201812..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all  select * from ItemLog_darklord_201902..LevelandJobChangeLog union all  select * from ItemLog_darklord_201903..LevelandJobChangeLog union all select * from ItemLog_darklord_201904..LevelandJobChangeLog union all select * from ItemLog_darklord_201905..LevelandJobChangeLog union all select * from ItemLog_darklord_201906..LevelandJobChangeLog union all select * from ItemLog_darklord_201907..LevelandJobChangeLog union all 
+select * from ItemLog_darklord_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_darklord_201909..LevelandJobChangeLog union all 
+  select * from darklord.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from darklord.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..룬나이트
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ --
+  from a 
+where job in (4060,4096,4054)
+order by ranking
+
+-------------
+with a as (
+SELECT 'darklord' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_darklord_201804..LevelandJobChangeLog union all select * from ItemLog_darklord_201805..LevelandJobChangeLog union all select * from ItemLog_darklord_201806..LevelandJobChangeLog union all select * from ItemLog_darklord_201807..LevelandJobChangeLog union all select * from ItemLog_darklord_201808..LevelandJobChangeLog union all select * from ItemLog_darklord_201809..LevelandJobChangeLog union all select * from ItemLog_darklord_201810..LevelandJobChangeLog union all select * from ItemLog_darklord_201811..LevelandJobChangeLog union all select * from ItemLog_darklord_201812..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all  select * from ItemLog_darklord_201902..LevelandJobChangeLog union all  select * from ItemLog_darklord_201903..LevelandJobChangeLog union all select * from ItemLog_darklord_201904..LevelandJobChangeLog union all select * from ItemLog_darklord_201905..LevelandJobChangeLog union all select * from ItemLog_darklord_201906..LevelandJobChangeLog union all select * from ItemLog_darklord_201907..LevelandJobChangeLog union all 
+select * from ItemLog_darklord_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_darklord_201909..LevelandJobChangeLog union all 
+  select * from darklord.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from darklord.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..로얄가드
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4073,4102,4066)
+order by ranking
+
+-------------------
+with a as (
+SELECT 'darklord' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_darklord_201804..LevelandJobChangeLog union all select * from ItemLog_darklord_201805..LevelandJobChangeLog union all select * from ItemLog_darklord_201806..LevelandJobChangeLog union all select * from ItemLog_darklord_201807..LevelandJobChangeLog union all select * from ItemLog_darklord_201808..LevelandJobChangeLog union all select * from ItemLog_darklord_201809..LevelandJobChangeLog union all select * from ItemLog_darklord_201810..LevelandJobChangeLog union all select * from ItemLog_darklord_201811..LevelandJobChangeLog union all select * from ItemLog_darklord_201812..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all  select * from ItemLog_darklord_201902..LevelandJobChangeLog union all  select * from ItemLog_darklord_201903..LevelandJobChangeLog union all select * from ItemLog_darklord_201904..LevelandJobChangeLog union all select * from ItemLog_darklord_201905..LevelandJobChangeLog union all select * from ItemLog_darklord_201906..LevelandJobChangeLog union all select * from ItemLog_darklord_201907..LevelandJobChangeLog union all 
+select * from ItemLog_darklord_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_darklord_201909..LevelandJobChangeLog union all 
+  select * from darklord.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from darklord.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..소서러
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4074,4103,4067)
+order by ranking
+
+-------------
+with a as (
+SELECT 'darklord' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_darklord_201804..LevelandJobChangeLog union all select * from ItemLog_darklord_201805..LevelandJobChangeLog union all select * from ItemLog_darklord_201806..LevelandJobChangeLog union all select * from ItemLog_darklord_201807..LevelandJobChangeLog union all select * from ItemLog_darklord_201808..LevelandJobChangeLog union all select * from ItemLog_darklord_201809..LevelandJobChangeLog union all select * from ItemLog_darklord_201810..LevelandJobChangeLog union all select * from ItemLog_darklord_201811..LevelandJobChangeLog union all select * from ItemLog_darklord_201812..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all  select * from ItemLog_darklord_201902..LevelandJobChangeLog union all  select * from ItemLog_darklord_201903..LevelandJobChangeLog union all select * from ItemLog_darklord_201904..LevelandJobChangeLog union all select * from ItemLog_darklord_201905..LevelandJobChangeLog union all select * from ItemLog_darklord_201906..LevelandJobChangeLog union all select * from ItemLog_darklord_201907..LevelandJobChangeLog union all 
+select * from ItemLog_darklord_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_darklord_201909..LevelandJobChangeLog union all 
+  select * from darklord.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from darklord.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..미케닉
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- into requestlog_20190919..미케닉
+  from a 
+where job in (4064,4100,4058)
+order by ranking
+
+-------------
+with a as (
+SELECT 'darklord' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_darklord_201804..LevelandJobChangeLog union all select * from ItemLog_darklord_201805..LevelandJobChangeLog union all select * from ItemLog_darklord_201806..LevelandJobChangeLog union all select * from ItemLog_darklord_201807..LevelandJobChangeLog union all select * from ItemLog_darklord_201808..LevelandJobChangeLog union all select * from ItemLog_darklord_201809..LevelandJobChangeLog union all select * from ItemLog_darklord_201810..LevelandJobChangeLog union all select * from ItemLog_darklord_201811..LevelandJobChangeLog union all select * from ItemLog_darklord_201812..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all  select * from ItemLog_darklord_201902..LevelandJobChangeLog union all  select * from ItemLog_darklord_201903..LevelandJobChangeLog union all select * from ItemLog_darklord_201904..LevelandJobChangeLog union all select * from ItemLog_darklord_201905..LevelandJobChangeLog union all select * from ItemLog_darklord_201906..LevelandJobChangeLog union all select * from ItemLog_darklord_201907..LevelandJobChangeLog union all 
+select * from ItemLog_darklord_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_darklord_201909..LevelandJobChangeLog union all 
+  select * from darklord.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from darklord.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..제네릭
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- into requestlog_20190919..제네릭
+  from a 
+where job in (4078,4107,4071)
+order by ranking
+
+-------------
+
+with a as (
+SELECT 'darklord' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_darklord_201804..LevelandJobChangeLog union all select * from ItemLog_darklord_201805..LevelandJobChangeLog union all select * from ItemLog_darklord_201806..LevelandJobChangeLog union all select * from ItemLog_darklord_201807..LevelandJobChangeLog union all select * from ItemLog_darklord_201808..LevelandJobChangeLog union all select * from ItemLog_darklord_201809..LevelandJobChangeLog union all select * from ItemLog_darklord_201810..LevelandJobChangeLog union all select * from ItemLog_darklord_201811..LevelandJobChangeLog union all select * from ItemLog_darklord_201812..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all  select * from ItemLog_darklord_201902..LevelandJobChangeLog union all  select * from ItemLog_darklord_201903..LevelandJobChangeLog union all select * from ItemLog_darklord_201904..LevelandJobChangeLog union all select * from ItemLog_darklord_201905..LevelandJobChangeLog union all select * from ItemLog_darklord_201906..LevelandJobChangeLog union all select * from ItemLog_darklord_201907..LevelandJobChangeLog union all 
+select * from ItemLog_darklord_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_darklord_201909..LevelandJobChangeLog union all 
+  select * from darklord.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from darklord.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..아크비숍
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4063,4099,4057)
+order by ranking
+
+-------------
+with a as (
+SELECT 'darklord' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_darklord_201804..LevelandJobChangeLog union all select * from ItemLog_darklord_201805..LevelandJobChangeLog union all select * from ItemLog_darklord_201806..LevelandJobChangeLog union all select * from ItemLog_darklord_201807..LevelandJobChangeLog union all select * from ItemLog_darklord_201808..LevelandJobChangeLog union all select * from ItemLog_darklord_201809..LevelandJobChangeLog union all select * from ItemLog_darklord_201810..LevelandJobChangeLog union all select * from ItemLog_darklord_201811..LevelandJobChangeLog union all select * from ItemLog_darklord_201812..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all  select * from ItemLog_darklord_201902..LevelandJobChangeLog union all  select * from ItemLog_darklord_201903..LevelandJobChangeLog union all select * from ItemLog_darklord_201904..LevelandJobChangeLog union all select * from ItemLog_darklord_201905..LevelandJobChangeLog union all select * from ItemLog_darklord_201906..LevelandJobChangeLog union all select * from ItemLog_darklord_201907..LevelandJobChangeLog union all 
+select * from ItemLog_darklord_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_darklord_201909..LevelandJobChangeLog union all 
+  select * from darklord.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from darklord.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..수라
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4077,4106,4070)
+order by ranking
+
+-------------
+with a as (
+SELECT 'darklord' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_darklord_201804..LevelandJobChangeLog union all select * from ItemLog_darklord_201805..LevelandJobChangeLog union all select * from ItemLog_darklord_201806..LevelandJobChangeLog union all select * from ItemLog_darklord_201807..LevelandJobChangeLog union all select * from ItemLog_darklord_201808..LevelandJobChangeLog union all select * from ItemLog_darklord_201809..LevelandJobChangeLog union all select * from ItemLog_darklord_201810..LevelandJobChangeLog union all select * from ItemLog_darklord_201811..LevelandJobChangeLog union all select * from ItemLog_darklord_201812..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all  select * from ItemLog_darklord_201902..LevelandJobChangeLog union all  select * from ItemLog_darklord_201903..LevelandJobChangeLog union all select * from ItemLog_darklord_201904..LevelandJobChangeLog union all select * from ItemLog_darklord_201905..LevelandJobChangeLog union all select * from ItemLog_darklord_201906..LevelandJobChangeLog union all select * from ItemLog_darklord_201907..LevelandJobChangeLog union all 
+select * from ItemLog_darklord_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_darklord_201909..LevelandJobChangeLog union all 
+  select * from darklord.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from darklord.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..길로틴크로스
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4065,4101,4059)
+order by ranking
+
+-------------
+with a as (
+SELECT 'darklord' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_darklord_201804..LevelandJobChangeLog union all select * from ItemLog_darklord_201805..LevelandJobChangeLog union all select * from ItemLog_darklord_201806..LevelandJobChangeLog union all select * from ItemLog_darklord_201807..LevelandJobChangeLog union all select * from ItemLog_darklord_201808..LevelandJobChangeLog union all select * from ItemLog_darklord_201809..LevelandJobChangeLog union all select * from ItemLog_darklord_201810..LevelandJobChangeLog union all select * from ItemLog_darklord_201811..LevelandJobChangeLog union all select * from ItemLog_darklord_201812..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all  select * from ItemLog_darklord_201902..LevelandJobChangeLog union all  select * from ItemLog_darklord_201903..LevelandJobChangeLog union all select * from ItemLog_darklord_201904..LevelandJobChangeLog union all select * from ItemLog_darklord_201905..LevelandJobChangeLog union all select * from ItemLog_darklord_201906..LevelandJobChangeLog union all select * from ItemLog_darklord_201907..LevelandJobChangeLog union all 
+select * from ItemLog_darklord_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_darklord_201909..LevelandJobChangeLog union all 
+  select * from darklord.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from darklord.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..쉐도우체이서
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4079,4108,4072)
+order by ranking
+
+-------------
+with a as (
+SELECT 'darklord' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_darklord_201804..LevelandJobChangeLog union all select * from ItemLog_darklord_201805..LevelandJobChangeLog union all select * from ItemLog_darklord_201806..LevelandJobChangeLog union all select * from ItemLog_darklord_201807..LevelandJobChangeLog union all select * from ItemLog_darklord_201808..LevelandJobChangeLog union all select * from ItemLog_darklord_201809..LevelandJobChangeLog union all select * from ItemLog_darklord_201810..LevelandJobChangeLog union all select * from ItemLog_darklord_201811..LevelandJobChangeLog union all select * from ItemLog_darklord_201812..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all  select * from ItemLog_darklord_201902..LevelandJobChangeLog union all  select * from ItemLog_darklord_201903..LevelandJobChangeLog union all select * from ItemLog_darklord_201904..LevelandJobChangeLog union all select * from ItemLog_darklord_201905..LevelandJobChangeLog union all select * from ItemLog_darklord_201906..LevelandJobChangeLog union all select * from ItemLog_darklord_201907..LevelandJobChangeLog union all 
+select * from ItemLog_darklord_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_darklord_201909..LevelandJobChangeLog union all 
+  select * from darklord.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from darklord.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..레인져
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+  
+  from a 
+where job in (4062,4098,4056)
+order by ranking
+
+-------------
+with a as (
+SELECT 'darklord' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_darklord_201804..LevelandJobChangeLog union all select * from ItemLog_darklord_201805..LevelandJobChangeLog union all select * from ItemLog_darklord_201806..LevelandJobChangeLog union all select * from ItemLog_darklord_201807..LevelandJobChangeLog union all select * from ItemLog_darklord_201808..LevelandJobChangeLog union all select * from ItemLog_darklord_201809..LevelandJobChangeLog union all select * from ItemLog_darklord_201810..LevelandJobChangeLog union all select * from ItemLog_darklord_201811..LevelandJobChangeLog union all select * from ItemLog_darklord_201812..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all  select * from ItemLog_darklord_201902..LevelandJobChangeLog union all  select * from ItemLog_darklord_201903..LevelandJobChangeLog union all select * from ItemLog_darklord_201904..LevelandJobChangeLog union all select * from ItemLog_darklord_201905..LevelandJobChangeLog union all select * from ItemLog_darklord_201906..LevelandJobChangeLog union all select * from ItemLog_darklord_201907..LevelandJobChangeLog union all 
+select * from ItemLog_darklord_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_darklord_201909..LevelandJobChangeLog union all 
+  select * from darklord.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from darklord.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..민스트럴
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4075,4104,4068)
+order by ranking
+
+-------------
+with a as (
+SELECT 'darklord' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_darklord_201804..LevelandJobChangeLog union all select * from ItemLog_darklord_201805..LevelandJobChangeLog union all select * from ItemLog_darklord_201806..LevelandJobChangeLog union all select * from ItemLog_darklord_201807..LevelandJobChangeLog union all select * from ItemLog_darklord_201808..LevelandJobChangeLog union all select * from ItemLog_darklord_201809..LevelandJobChangeLog union all select * from ItemLog_darklord_201810..LevelandJobChangeLog union all select * from ItemLog_darklord_201811..LevelandJobChangeLog union all select * from ItemLog_darklord_201812..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all  select * from ItemLog_darklord_201902..LevelandJobChangeLog union all  select * from ItemLog_darklord_201903..LevelandJobChangeLog union all select * from ItemLog_darklord_201904..LevelandJobChangeLog union all select * from ItemLog_darklord_201905..LevelandJobChangeLog union all select * from ItemLog_darklord_201906..LevelandJobChangeLog union all select * from ItemLog_darklord_201907..LevelandJobChangeLog union all 
+select * from ItemLog_darklord_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_darklord_201909..LevelandJobChangeLog union all 
+  select * from darklord.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from darklord.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert  into requestlog_20190919..원더러
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ --
+  from a 
+where job in (4076,4105,4069)
+order by ranking
+
+-------------
+with a as (
+SELECT 'darklord' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_darklord_201804..LevelandJobChangeLog union all select * from ItemLog_darklord_201805..LevelandJobChangeLog union all select * from ItemLog_darklord_201806..LevelandJobChangeLog union all select * from ItemLog_darklord_201807..LevelandJobChangeLog union all select * from ItemLog_darklord_201808..LevelandJobChangeLog union all select * from ItemLog_darklord_201809..LevelandJobChangeLog union all select * from ItemLog_darklord_201810..LevelandJobChangeLog union all select * from ItemLog_darklord_201811..LevelandJobChangeLog union all select * from ItemLog_darklord_201812..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all  select * from ItemLog_darklord_201902..LevelandJobChangeLog union all  select * from ItemLog_darklord_201903..LevelandJobChangeLog union all select * from ItemLog_darklord_201904..LevelandJobChangeLog union all select * from ItemLog_darklord_201905..LevelandJobChangeLog union all select * from ItemLog_darklord_201906..LevelandJobChangeLog union all select * from ItemLog_darklord_201907..LevelandJobChangeLog union all 
+select * from ItemLog_darklord_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_darklord_201909..LevelandJobChangeLog union all 
+  select * from darklord.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from darklord.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..성제
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4239,4241)
+order by ranking
+
+-------------
+with a as (
+SELECT 'darklord' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_darklord_201804..LevelandJobChangeLog union all select * from ItemLog_darklord_201805..LevelandJobChangeLog union all select * from ItemLog_darklord_201806..LevelandJobChangeLog union all select * from ItemLog_darklord_201807..LevelandJobChangeLog union all select * from ItemLog_darklord_201808..LevelandJobChangeLog union all select * from ItemLog_darklord_201809..LevelandJobChangeLog union all select * from ItemLog_darklord_201810..LevelandJobChangeLog union all select * from ItemLog_darklord_201811..LevelandJobChangeLog union all select * from ItemLog_darklord_201812..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all  select * from ItemLog_darklord_201902..LevelandJobChangeLog union all  select * from ItemLog_darklord_201903..LevelandJobChangeLog union all select * from ItemLog_darklord_201904..LevelandJobChangeLog union all select * from ItemLog_darklord_201905..LevelandJobChangeLog union all select * from ItemLog_darklord_201906..LevelandJobChangeLog union all select * from ItemLog_darklord_201907..LevelandJobChangeLog union all 
+select * from ItemLog_darklord_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_darklord_201909..LevelandJobChangeLog union all 
+  select * from darklord.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from darklord.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..소울리퍼
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4240,4242)
+order by ranking
+
+-------------
+with a as (
+SELECT 'darklord' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_darklord_201804..LevelandJobChangeLog union all select * from ItemLog_darklord_201805..LevelandJobChangeLog union all select * from ItemLog_darklord_201806..LevelandJobChangeLog union all select * from ItemLog_darklord_201807..LevelandJobChangeLog union all select * from ItemLog_darklord_201808..LevelandJobChangeLog union all select * from ItemLog_darklord_201809..LevelandJobChangeLog union all select * from ItemLog_darklord_201810..LevelandJobChangeLog union all select * from ItemLog_darklord_201811..LevelandJobChangeLog union all select * from ItemLog_darklord_201812..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all  select * from ItemLog_darklord_201902..LevelandJobChangeLog union all  select * from ItemLog_darklord_201903..LevelandJobChangeLog union all select * from ItemLog_darklord_201904..LevelandJobChangeLog union all select * from ItemLog_darklord_201905..LevelandJobChangeLog union all select * from ItemLog_darklord_201906..LevelandJobChangeLog union all select * from ItemLog_darklord_201907..LevelandJobChangeLog union all 
+select * from ItemLog_darklord_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_darklord_201909..LevelandJobChangeLog union all 
+  select * from darklord.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from darklord.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..카게로우
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4211,4223)
+order by ranking
+
+-------------
+with a as (
+SELECT 'darklord' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_darklord_201804..LevelandJobChangeLog union all select * from ItemLog_darklord_201805..LevelandJobChangeLog union all select * from ItemLog_darklord_201806..LevelandJobChangeLog union all select * from ItemLog_darklord_201807..LevelandJobChangeLog union all select * from ItemLog_darklord_201808..LevelandJobChangeLog union all select * from ItemLog_darklord_201809..LevelandJobChangeLog union all select * from ItemLog_darklord_201810..LevelandJobChangeLog union all select * from ItemLog_darklord_201811..LevelandJobChangeLog union all select * from ItemLog_darklord_201812..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all  select * from ItemLog_darklord_201902..LevelandJobChangeLog union all  select * from ItemLog_darklord_201903..LevelandJobChangeLog union all select * from ItemLog_darklord_201904..LevelandJobChangeLog union all select * from ItemLog_darklord_201905..LevelandJobChangeLog union all select * from ItemLog_darklord_201906..LevelandJobChangeLog union all select * from ItemLog_darklord_201907..LevelandJobChangeLog union all 
+select * from ItemLog_darklord_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_darklord_201909..LevelandJobChangeLog union all 
+  select * from darklord.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from darklord.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..오보로
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4212,4224)
+order by ranking
+
+-------------
+with a as (
+SELECT 'darklord' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_darklord_201804..LevelandJobChangeLog union all select * from ItemLog_darklord_201805..LevelandJobChangeLog union all select * from ItemLog_darklord_201806..LevelandJobChangeLog union all select * from ItemLog_darklord_201807..LevelandJobChangeLog union all select * from ItemLog_darklord_201808..LevelandJobChangeLog union all select * from ItemLog_darklord_201809..LevelandJobChangeLog union all select * from ItemLog_darklord_201810..LevelandJobChangeLog union all select * from ItemLog_darklord_201811..LevelandJobChangeLog union all select * from ItemLog_darklord_201812..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all  select * from ItemLog_darklord_201902..LevelandJobChangeLog union all  select * from ItemLog_darklord_201903..LevelandJobChangeLog union all select * from ItemLog_darklord_201904..LevelandJobChangeLog union all select * from ItemLog_darklord_201905..LevelandJobChangeLog union all select * from ItemLog_darklord_201906..LevelandJobChangeLog union all select * from ItemLog_darklord_201907..LevelandJobChangeLog union all 
+select * from ItemLog_darklord_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_darklord_201909..LevelandJobChangeLog union all 
+  select * from darklord.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from darklord.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..리벨리온
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4215,4229)
+order by ranking
+
+-------------
+with a as (
+SELECT 'darklord' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_darklord_201804..LevelandJobChangeLog union all select * from ItemLog_darklord_201805..LevelandJobChangeLog union all select * from ItemLog_darklord_201806..LevelandJobChangeLog union all select * from ItemLog_darklord_201807..LevelandJobChangeLog union all select * from ItemLog_darklord_201808..LevelandJobChangeLog union all select * from ItemLog_darklord_201809..LevelandJobChangeLog union all select * from ItemLog_darklord_201810..LevelandJobChangeLog union all select * from ItemLog_darklord_201811..LevelandJobChangeLog union all select * from ItemLog_darklord_201812..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all  select * from ItemLog_darklord_201902..LevelandJobChangeLog union all  select * from ItemLog_darklord_201903..LevelandJobChangeLog union all select * from ItemLog_darklord_201904..LevelandJobChangeLog union all select * from ItemLog_darklord_201905..LevelandJobChangeLog union all select * from ItemLog_darklord_201906..LevelandJobChangeLog union all select * from ItemLog_darklord_201907..LevelandJobChangeLog union all 
+select * from ItemLog_darklord_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_darklord_201909..LevelandJobChangeLog union all 
+  select * from darklord.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from darklord.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert  into requestlog_20190919..리벨리온
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ --
+  from a 
+where job in (4215,4229)
+order by ranking
+
+-------------
+with a as (
+SELECT 'darklord' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_darklord_201804..LevelandJobChangeLog union all select * from ItemLog_darklord_201805..LevelandJobChangeLog union all select * from ItemLog_darklord_201806..LevelandJobChangeLog union all select * from ItemLog_darklord_201807..LevelandJobChangeLog union all select * from ItemLog_darklord_201808..LevelandJobChangeLog union all select * from ItemLog_darklord_201809..LevelandJobChangeLog union all select * from ItemLog_darklord_201810..LevelandJobChangeLog union all select * from ItemLog_darklord_201811..LevelandJobChangeLog union all select * from ItemLog_darklord_201812..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all  select * from ItemLog_darklord_201902..LevelandJobChangeLog union all  select * from ItemLog_darklord_201903..LevelandJobChangeLog union all select * from ItemLog_darklord_201904..LevelandJobChangeLog union all select * from ItemLog_darklord_201905..LevelandJobChangeLog union all select * from ItemLog_darklord_201906..LevelandJobChangeLog union all select * from ItemLog_darklord_201907..LevelandJobChangeLog union all 
+select * from ItemLog_darklord_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_darklord_201909..LevelandJobChangeLog union all 
+  select * from darklord.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from darklord.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..소환사
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4218,4220)
+order by ranking
+
+-------------
+
+===========================================================
+
+
+with a as (
+SELECT 'yggdra' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_yggdrasil_201804..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201805..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201806..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201807..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201808..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201809..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201810..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201811..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201812..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201902..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201903..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201904..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201905..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201906..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201907..LevelandJobChangeLog union all 
+select * from ItemLog_yggdrasil_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_yggdrasil_201909..LevelandJobChangeLog union all 
+  select * from yggdrasil.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from yggdrasil.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..룬나이트
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ --
+  from a 
+where job in (4060,4096,4054)
+order by ranking
+
+-------------
+with a as (
+SELECT 'yggdra' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_yggdrasil_201804..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201805..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201806..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201807..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201808..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201809..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201810..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201811..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201812..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201902..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201903..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201904..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201905..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201906..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201907..LevelandJobChangeLog union all 
+select * from ItemLog_yggdrasil_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_yggdrasil_201909..LevelandJobChangeLog union all 
+  select * from yggdrasil.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from yggdrasil.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..로얄가드
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4073,4102,4066)
+order by ranking
+
+-------------------
+with a as (
+SELECT 'yggdra' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_yggdrasil_201804..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201805..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201806..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201807..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201808..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201809..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201810..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201811..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201812..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201902..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201903..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201904..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201905..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201906..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201907..LevelandJobChangeLog union all 
+select * from ItemLog_yggdrasil_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_yggdrasil_201909..LevelandJobChangeLog union all 
+  select * from yggdrasil.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from yggdrasil.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..소서러
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4074,4103,4067)
+order by ranking
+
+-------------
+with a as (
+SELECT 'yggdra' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_yggdrasil_201804..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201805..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201806..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201807..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201808..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201809..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201810..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201811..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201812..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201902..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201903..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201904..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201905..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201906..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201907..LevelandJobChangeLog union all 
+select * from ItemLog_yggdrasil_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_yggdrasil_201909..LevelandJobChangeLog union all 
+  select * from yggdrasil.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from yggdrasil.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..미케닉
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- into requestlog_20190919..미케닉
+  from a 
+where job in (4064,4100,4058)
+order by ranking
+
+-------------
+with a as (
+SELECT 'yggdra' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_yggdrasil_201804..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201805..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201806..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201807..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201808..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201809..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201810..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201811..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201812..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201902..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201903..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201904..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201905..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201906..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201907..LevelandJobChangeLog union all 
+select * from ItemLog_yggdrasil_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_yggdrasil_201909..LevelandJobChangeLog union all 
+  select * from yggdrasil.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from yggdrasil.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..제네릭
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- into requestlog_20190919..제네릭
+  from a 
+where job in (4078,4107,4071)
+order by ranking
+
+-------------
+
+with a as (
+SELECT 'yggdra' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_yggdrasil_201804..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201805..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201806..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201807..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201808..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201809..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201810..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201811..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201812..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201902..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201903..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201904..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201905..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201906..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201907..LevelandJobChangeLog union all 
+select * from ItemLog_yggdrasil_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_yggdrasil_201909..LevelandJobChangeLog union all 
+  select * from yggdrasil.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from yggdrasil.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..아크비숍
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4063,4099,4057)
+order by ranking
+
+-------------
+with a as (
+SELECT 'yggdra' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_yggdrasil_201804..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201805..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201806..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201807..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201808..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201809..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201810..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201811..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201812..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201902..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201903..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201904..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201905..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201906..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201907..LevelandJobChangeLog union all 
+select * from ItemLog_yggdrasil_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_yggdrasil_201909..LevelandJobChangeLog union all 
+  select * from yggdrasil.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from yggdrasil.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..수라
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4077,4106,4070)
+order by ranking
+
+-------------
+with a as (
+SELECT 'yggdra' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_yggdrasil_201804..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201805..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201806..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201807..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201808..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201809..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201810..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201811..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201812..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201902..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201903..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201904..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201905..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201906..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201907..LevelandJobChangeLog union all 
+select * from ItemLog_yggdrasil_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_yggdrasil_201909..LevelandJobChangeLog union all 
+  select * from yggdrasil.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from yggdrasil.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..길로틴크로스
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4065,4101,4059)
+order by ranking
+
+-------------
+with a as (
+SELECT 'yggdra' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_yggdrasil_201804..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201805..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201806..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201807..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201808..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201809..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201810..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201811..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201812..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201902..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201903..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201904..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201905..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201906..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201907..LevelandJobChangeLog union all 
+select * from ItemLog_yggdrasil_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_yggdrasil_201909..LevelandJobChangeLog union all 
+  select * from yggdrasil.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from yggdrasil.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..쉐도우체이서
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4079,4108,4072)
+order by ranking
+
+-------------
+with a as (
+SELECT 'yggdra' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_yggdrasil_201804..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201805..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201806..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201807..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201808..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201809..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201810..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201811..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201812..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201902..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201903..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201904..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201905..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201906..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201907..LevelandJobChangeLog union all 
+select * from ItemLog_yggdrasil_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_yggdrasil_201909..LevelandJobChangeLog union all 
+  select * from yggdrasil.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from yggdrasil.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..레인져
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+  
+  from a 
+where job in (4062,4098,4056)
+order by ranking
+
+-------------
+with a as (
+SELECT 'yggdra' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_yggdrasil_201804..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201805..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201806..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201807..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201808..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201809..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201810..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201811..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201812..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201902..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201903..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201904..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201905..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201906..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201907..LevelandJobChangeLog union all 
+select * from ItemLog_yggdrasil_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_yggdrasil_201909..LevelandJobChangeLog union all 
+  select * from yggdrasil.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from yggdrasil.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..민스트럴
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4075,4104,4068)
+order by ranking
+
+-------------
+with a as (
+SELECT 'yggdra' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_yggdrasil_201804..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201805..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201806..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201807..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201808..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201809..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201810..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201811..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201812..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201902..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201903..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201904..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201905..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201906..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201907..LevelandJobChangeLog union all 
+select * from ItemLog_yggdrasil_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_yggdrasil_201909..LevelandJobChangeLog union all 
+  select * from yggdrasil.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from yggdrasil.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert  into requestlog_20190919..원더러
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ --
+  from a 
+where job in (4076,4105,4069)
+order by ranking
+
+-------------
+with a as (
+SELECT 'yggdra' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_yggdrasil_201804..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201805..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201806..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201807..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201808..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201809..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201810..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201811..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201812..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201902..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201903..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201904..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201905..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201906..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201907..LevelandJobChangeLog union all 
+select * from ItemLog_yggdrasil_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_yggdrasil_201909..LevelandJobChangeLog union all 
+  select * from yggdrasil.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from yggdrasil.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..성제
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4239,4241)
+order by ranking
+
+-------------
+with a as (
+SELECT 'yggdra' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_yggdrasil_201804..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201805..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201806..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201807..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201808..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201809..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201810..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201811..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201812..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201902..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201903..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201904..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201905..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201906..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201907..LevelandJobChangeLog union all 
+select * from ItemLog_yggdrasil_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_yggdrasil_201909..LevelandJobChangeLog union all 
+  select * from yggdrasil.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from yggdrasil.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..소울리퍼
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4240,4242)
+order by ranking
+
+-------------
+with a as (
+SELECT 'yggdra' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_yggdrasil_201804..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201805..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201806..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201807..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201808..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201809..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201810..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201811..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201812..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201902..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201903..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201904..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201905..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201906..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201907..LevelandJobChangeLog union all 
+select * from ItemLog_yggdrasil_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_yggdrasil_201909..LevelandJobChangeLog union all 
+  select * from yggdrasil.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from yggdrasil.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..카게로우
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4211,4223)
+order by ranking
+
+-------------
+with a as (
+SELECT 'yggdra' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_yggdrasil_201804..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201805..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201806..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201807..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201808..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201809..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201810..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201811..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201812..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201902..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201903..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201904..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201905..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201906..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201907..LevelandJobChangeLog union all 
+select * from ItemLog_yggdrasil_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_yggdrasil_201909..LevelandJobChangeLog union all 
+  select * from yggdrasil.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from yggdrasil.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..오보로
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4212,4224)
+order by ranking
+
+-------------
+with a as (
+SELECT 'yggdra' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_yggdrasil_201804..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201805..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201806..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201807..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201808..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201809..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201810..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201811..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201812..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201902..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201903..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201904..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201905..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201906..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201907..LevelandJobChangeLog union all 
+select * from ItemLog_yggdrasil_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_yggdrasil_201909..LevelandJobChangeLog union all 
+  select * from yggdrasil.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from yggdrasil.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..리벨리온
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4215,4229)
+order by ranking
+
+-------------
+with a as (
+SELECT 'yggdra' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_yggdrasil_201804..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201805..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201806..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201807..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201808..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201809..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201810..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201811..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201812..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201902..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201903..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201904..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201905..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201906..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201907..LevelandJobChangeLog union all 
+select * from ItemLog_yggdrasil_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_yggdrasil_201909..LevelandJobChangeLog union all 
+  select * from yggdrasil.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from yggdrasil.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert  into requestlog_20190919..리벨리온
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ --
+  from a 
+where job in (4215,4229)
+order by ranking
+
+-------------
+with a as (
+SELECT 'yggdra' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_yggdrasil_201804..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201805..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201806..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201807..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201808..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201809..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201810..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201811..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201812..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201902..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201903..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201904..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201905..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201906..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201907..LevelandJobChangeLog union all 
+select * from ItemLog_yggdrasil_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_yggdrasil_201909..LevelandJobChangeLog union all 
+  select * from yggdrasil.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from yggdrasil.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..소환사
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4218,4220)
+order by ranking
+
+-------------
+
+===========================================================
+
+
+
+
+
+
+
+
+
+
+
+with a as (
+SELECT 'yggdra' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_yggdrasil_201804..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201805..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201806..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201807..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201808..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201809..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201810..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201811..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201812..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201902..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201903..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201904..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201905..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201906..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201907..LevelandJobChangeLog union all 
+select * from ItemLog_yggdrasil_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_yggdrasil_201909..LevelandJobChangeLog union all 
+  select * from yggdrasil.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from yggdrasil.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..슈퍼노비스
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4190,4191)
+order by ranking
+
+
+with a as (
+SELECT 'darklord' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_darklord_201804..LevelandJobChangeLog union all select * from ItemLog_darklord_201805..LevelandJobChangeLog union all select * from ItemLog_darklord_201806..LevelandJobChangeLog union all select * from ItemLog_darklord_201807..LevelandJobChangeLog union all select * from ItemLog_darklord_201808..LevelandJobChangeLog union all select * from ItemLog_darklord_201809..LevelandJobChangeLog union all select * from ItemLog_darklord_201810..LevelandJobChangeLog union all select * from ItemLog_darklord_201811..LevelandJobChangeLog union all select * from ItemLog_darklord_201812..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all  select * from ItemLog_darklord_201902..LevelandJobChangeLog union all  select * from ItemLog_darklord_201903..LevelandJobChangeLog union all select * from ItemLog_darklord_201904..LevelandJobChangeLog union all select * from ItemLog_darklord_201905..LevelandJobChangeLog union all select * from ItemLog_darklord_201906..LevelandJobChangeLog union all select * from ItemLog_darklord_201907..LevelandJobChangeLog union all 
+select * from ItemLog_darklord_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_darklord_201909..LevelandJobChangeLog union all 
+  select * from darklord.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from darklord.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..슈퍼노비스
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4190,4191)
+order by ranking
+
+
+
+with a as (
+SELECT 'darklord' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_darklord_201804..LevelandJobChangeLog union all select * from ItemLog_darklord_201805..LevelandJobChangeLog union all select * from ItemLog_darklord_201806..LevelandJobChangeLog union all select * from ItemLog_darklord_201807..LevelandJobChangeLog union all select * from ItemLog_darklord_201808..LevelandJobChangeLog union all select * from ItemLog_darklord_201809..LevelandJobChangeLog union all select * from ItemLog_darklord_201810..LevelandJobChangeLog union all select * from ItemLog_darklord_201811..LevelandJobChangeLog union all select * from ItemLog_darklord_201812..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all select * from ItemLog_darklord_201901..LevelandJobChangeLog union all  select * from ItemLog_darklord_201902..LevelandJobChangeLog union all  select * from ItemLog_darklord_201903..LevelandJobChangeLog union all select * from ItemLog_darklord_201904..LevelandJobChangeLog union all select * from ItemLog_darklord_201905..LevelandJobChangeLog union all select * from ItemLog_darklord_201906..LevelandJobChangeLog union all select * from ItemLog_darklord_201907..LevelandJobChangeLog union all 
+select * from ItemLog_darklord_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_darklord_201909..LevelandJobChangeLog union all 
+  select * from darklord.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from darklord.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..워록
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4061,4097,4055)
+order by ranking
+
+
+with a as (
+SELECT 'yggdra' as Server,b.job, b.clevel, b.aid, b.gid, b.charname, a.logtime 
+FROM 
+(select * from ItemLog_yggdrasil_201804..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201805..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201806..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201807..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201808..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201809..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201810..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201811..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201812..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201901..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201902..LevelandJobChangeLog union all  select * from ItemLog_yggdrasil_201903..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201904..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201905..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201906..LevelandJobChangeLog union all select * from ItemLog_yggdrasil_201907..LevelandJobChangeLog union all 
+select * from ItemLog_yggdrasil_201908..LevelandJobChangeLog union all 
+  select * from ItemLog_yggdrasil_201909..LevelandJobChangeLog union all 
+  select * from yggdrasil.itemlog.dbo.LevelandJobChangeLog)a
+right join (select aid,gid,charname,job,clevel/*, ROW_NUMBER() over (partition by job order by clevel desc) as ranking*/ from yggdrasil.character.dbo.charinfo) b
+on a.gid=b.gid and a.clevel=b.clevel and a.type=0
+
+)
+insert into requestlog_20190919..워록
+select top 10 [Server],job, clevel,ROW_NUMBER() over (order by clevel desc, logtime asc) as ranking, aid, gid, charname, a.logtime 
+ -- 
+  from a 
+where job in (4061,4097,4055)
+order by ranking

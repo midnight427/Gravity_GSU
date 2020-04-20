@@ -1,0 +1,17 @@
+select aid,ip,login,Logout into requestlog_20190514..Connectlog from (SELECT *  FROM connectlog201502.[dbo].[connectLog] where AID=590539 union all
+SELECT *  FROM connectlog201503.[dbo].[connectLog] where AID=590539 union all
+SELECT *  FROM connectlog201504.[dbo].[connectLog] where AID=590539)n
+order by 2
+
+
+
+
+select *
+ into requestlog_20190514..Itemlog 
+ from 
+ (SELECT *  FROM itemlog201502.[dbo].itemlog where srcAccountID=590539 union all
+SELECT *  FROM itemlog201503.[dbo].itemlog where srcAccountID=590539 union all
+SELECT *  FROM itemlog201504.[dbo].itemlog where srcAccountID=590539)n
+order by 5
+
+

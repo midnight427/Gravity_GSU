@@ -1,0 +1,774 @@
+---누적DB에서 실행 후 백업db의 [20191120_9월_Connect] 테이블로 가져오기xx
+select distinct(AID) from Connect201909..connectLog --Total
+select distinct(AID) from Connect201910..connectLog
+select distinct(AID) from Connect201911..connectLog
+--누적DB에서 실행 후 백업db의 [20191120_9월_Connect] 테이블로 가져오기xx
+
+
+  --xxx
+insert into [requestlog_20191120]..MonthlyAID
+SELECT '10월' as Month, COUNT(*) as Count
+  FROM [requestlog_20191120].[dbo].[20191120_10월_Connect]
+
+insert into [requestlog_20191120]..MonthlyAID
+SELECT '11월' as Month, COUNT(*) as Count
+  FROM [requestlog_20191120].[dbo].[20191120_11월_Connect]
+
+-------1. 월별 전체 계정수(서버별 / 전체 계정별)
+--------누적DB에서 실행
+
+SELECT 'baphomet'as server, count(distinct(AID)) as AIDcount
+into requestlog_20191120..[9월_접속계정]
+FROM [ItemLog_Baphomet_201909].[dbo].[CharConnectLog]
+
+insert into requestlog_20191120..[9월_접속계정]
+SELECT 'Dakrlord'as server, count(distinct(AID)) as AIDcount
+FROM [ItemLog_DarkLord_201909].[dbo].[CharConnectLog]
+
+insert into requestlog_20191120..[9월_접속계정]
+SELECT 'Yggdrasil'as server, count(distinct(AID)) as AIDcount
+FROM [ItemLog_Yggdrasil_201909].[dbo].[CharConnectLog]
+
+insert into requestlog_20191120..[9월_접속계정]
+SELECT 'Total'as server, COUNT(distinct(AID)) as AIDcount
+FROM Connect201909..connectLog
+
+
+
+SELECT 'baphomet'as server, count(distinct(AID)) as AIDcount
+into requestlog_20191120..[10월_접속계정]
+FROM [ItemLog_Baphomet_201910].[dbo].[CharConnectLog]
+
+insert into requestlog_20191120..[10월_접속계정]
+SELECT 'Dakrlord'as server, count(distinct(AID)) as AIDcount
+FROM [ItemLog_DarkLord_201910].[dbo].[CharConnectLog]
+
+insert into requestlog_20191120..[10월_접속계정]
+SELECT 'Yggdrasil'as server, count(distinct(AID)) as AIDcount
+FROM [ItemLog_Yggdrasil_201910].[dbo].[CharConnectLog]
+
+insert into requestlog_20191120..[10월_접속계정]
+SELECT 'Total'as server, COUNT(distinct(AID)) as AIDcount
+FROM Connect201910..connectLog
+
+
+SELECT 'baphomet'as server, count(distinct(AID)) as AIDcount
+into requestlog_20191120..[11월_접속계정]
+FROM [ItemLog_Baphomet_201911].[dbo].[CharConnectLog]
+
+insert into requestlog_20191120..[11월_접속계정]
+SELECT 'Dakrlord'as server, count(distinct(AID)) as AIDcount
+FROM [ItemLog_DarkLord_201911].[dbo].[CharConnectLog]
+
+insert into requestlog_20191120..[11월_접속계정]
+SELECT 'Yggdrasil'as server, count(distinct(AID)) as AIDcount
+FROM [ItemLog_Yggdrasil_201911].[dbo].[CharConnectLog]
+
+insert into requestlog_20191120..[11월_접속계정]
+SELECT 'Total'as server, COUNT(distinct(AID)) as AIDcount
+FROM Connect201911..connectLog
+--------누적DB에서 실행
+
+
+-------2. 월별 전체 캐릭터수(서버별 / 전체 캐릭터: 합산한 결과임)
+--------누적DB에서 실행
+
+SELECT 'baphomet'as server, count(distinct(GID)) as GIDcount
+into requestlog_20191120..[9월_접속캐릭]
+FROM [ItemLog_Baphomet_201909].[dbo].[CharConnectLog]
+
+insert into requestlog_20191120..[9월_접속캐릭]
+SELECT 'Dakrlord'as server, count(distinct(GID)) as GIDcount
+FROM [ItemLog_DarkLord_201909].[dbo].[CharConnectLog]
+
+insert into requestlog_20191120..[9월_접속캐릭]
+SELECT 'Yggdrasil'as server, count(distinct(GID)) as GIDcount
+FROM [ItemLog_Yggdrasil_201909].[dbo].[CharConnectLog]
+
+insert into requestlog_20191120..[9월_접속캐릭]
+SELECT 'sum'as server, sum(distinct(GIDcount)) as GIDcount
+FROM requestlog_20191120..[9월_접속캐릭]
+
+
+
+SELECT 'baphomet'as server, count(distinct(GID)) as GIDcount
+into requestlog_20191120..[10월_접속캐릭]
+FROM [ItemLog_Baphomet_201910].[dbo].[CharConnectLog]
+
+insert into requestlog_20191120..[10월_접속캐릭]
+SELECT 'Dakrlord'as server, count(distinct(GID)) as GIDcount
+FROM [ItemLog_DarkLord_201910].[dbo].[CharConnectLog]
+
+insert into requestlog_20191120..[10월_접속캐릭]
+SELECT 'Yggdrasil'as server, count(distinct(GID)) as GIDcount
+FROM [ItemLog_Yggdrasil_201910].[dbo].[CharConnectLog]
+
+insert into requestlog_20191120..[10월_접속캐릭]
+SELECT 'sum'as server, sum(distinct(GIDcount)) as GIDcount
+FROM requestlog_20191120..[10월_접속캐릭]
+
+
+SELECT 'baphomet'as server, count(distinct(GID)) as GIDcount
+into requestlog_20191120..[11월_접속캐릭]
+FROM [ItemLog_Baphomet_201911].[dbo].[CharConnectLog]
+
+insert into requestlog_20191120..[11월_접속캐릭]
+SELECT 'Dakrlord'as server, count(distinct(GID)) as GIDcount
+FROM [ItemLog_DarkLord_201911].[dbo].[CharConnectLog]
+
+insert into requestlog_20191120..[11월_접속캐릭]
+SELECT 'Yggdrasil'as server, count(distinct(GID)) as GIDcount
+FROM [ItemLog_Yggdrasil_201911].[dbo].[CharConnectLog]
+
+insert into requestlog_20191120..[11월_접속캐릭]
+SELECT 'sum'as server, sum(distinct(GIDcount)) as GIDcount
+FROM requestlog_20191120..[11월_접속캐릭]
+--------누적DB에서 실행
+
+----3. 레벨 분포도
+---3-0. 누적에서 GID 뽑아오기
+select distinct(GID) into requestlog_20191120..baphomet09월접속GID from [ItemLog_Baphomet_201909].[dbo].[CharConnectLog] --
+select distinct(GID) into requestlog_20191120..baphomet10월접속GID from [ItemLog_Baphomet_201910].[dbo].[CharConnectLog] --
+select distinct(GID) into requestlog_20191120..baphomet11월접속GID from [ItemLog_Baphomet_201911].[dbo].[CharConnectLog] --
+
+select distinct(GID) into requestlog_20191120..Darklord09월접속GID from [ItemLog_Darklord_201909].[dbo].[CharConnectLog] --
+select distinct(GID) into requestlog_20191120..Darklord10월접속GID from [ItemLog_Darklord_201910].[dbo].[CharConnectLog] --
+select distinct(GID) into requestlog_20191120..Darklord11월접속GID from [ItemLog_Darklord_201911].[dbo].[CharConnectLog] --
+
+select distinct(GID) into requestlog_20191120..yggdrasil09월접속GID from [ItemLog_yggdrasil_201909].[dbo].[CharConnectLog] --
+select distinct(GID) into requestlog_20191120..yggdrasil10월접속GID from [ItemLog_yggdrasil_201910].[dbo].[CharConnectLog] --
+select distinct(GID) into requestlog_20191120..yggdrasil11월접속GID from [ItemLog_yggdrasil_201911].[dbo].[CharConnectLog] --
+
+
+--백업DB에서 작업
+
+--3-1 전체(9월)
+select 'Lv1' as Level, count(gid) as Count
+into requestlog_20191120..TotalLevel9월
+from (select * from baphomet_20191120..charinfo union all select * from darklord_20191120..charinfo union all select * from yggdrasil_20191120..charinfo)n
+where n.clevel=1
+and n.gid in (select gid from requestlog_20191120_2..baphomet09월접속GID union all select gid from requestlog_20191120_2..Darklord09월접속GID union all select gid from requestlog_20191120_2..yggdrasil09월접속GID)
+
+insert into requestlog_20191120..TotalLevel9월
+select 'Lv2' as Level, count(gid) as Count
+from (select * from baphomet_20191120..charinfo union all select * from darklord_20191120..charinfo union all select * from yggdrasil_20191120..charinfo)n
+where n.clevel=2
+and n.gid in (select gid from requestlog_20191120_2..baphomet09월접속GID union all select gid from requestlog_20191120_2..Darklord09월접속GID union all select gid from requestlog_20191120_2..yggdrasil09월접속GID)
+
+insert into requestlog_20191120..TotalLevel9월
+select 'Lv3' as Level, count(gid) as Count
+from (select * from baphomet_20191120..charinfo union all select * from darklord_20191120..charinfo union all select * from yggdrasil_20191120..charinfo)n
+where n.clevel=3
+and n.gid in (select gid from requestlog_20191120_2..baphomet09월접속GID union all select gid from requestlog_20191120_2..Darklord09월접속GID union all select gid from requestlog_20191120_2..yggdrasil09월접속GID)
+
+
+---------cursor---------
+declare @num int
+declare cur cursor for select num from requestlog_20191120..num order by num
+open cur
+fetch next from cur into @num
+
+--select @num
+
+--close cur
+--deallocate cur
+
+while (@@FETCH_STATUS=0)
+begin
+if @num<=200
+begin
+insert into requestlog_20191120..TotalLevel9월
+select 'Lv'+convert(varchar,@num) as Level, count(gid) as Count
+from (select * from baphomet_20191120..charinfo union all select * from darklord_20191120..charinfo union all select * from yggdrasil_20191120..charinfo)n
+where n.clevel=@num
+and n.gid in (select gid from requestlog_20191120_2..baphomet09월접속GID union all select gid from requestlog_20191120_2..Darklord09월접속GID union all select gid from requestlog_20191120_2..yggdrasil09월접속GID)
+
+fetch next from cur into @num
+end
+end
+
+---------cursor---------
+
+
+--3-1 전체(10월)
+select 'Lv1' as Level, count(gid) as Count
+into requestlog_20191120..TotalLevel10월
+from (select * from baphomet_20191120..charinfo union all select * from darklord_20191120..charinfo union all select * from yggdrasil_20191120..charinfo)n
+where n.clevel=1
+and n.gid in (select gid from requestlog_20191120_2..baphomet10월접속GID union all select gid from requestlog_20191120_2..Darklord10월접속GID union all select gid from requestlog_20191120_2..yggdrasil10월접속GID)
+
+insert into requestlog_20191120..TotalLevel10월
+select 'Lv2' as Level, count(gid) as Count
+from (select * from baphomet_20191120..charinfo union all select * from darklord_20191120..charinfo union all select * from yggdrasil_20191120..charinfo)n
+where n.clevel=2
+and n.gid in (select gid from requestlog_20191120_2..baphomet10월접속GID union all select gid from requestlog_20191120_2..Darklord10월접속GID union all select gid from requestlog_20191120_2..yggdrasil10월접속GID)
+
+insert into requestlog_20191120..TotalLevel10월
+select 'Lv3' as Level, count(gid) as Count
+from (select * from baphomet_20191120..charinfo union all select * from darklord_20191120..charinfo union all select * from yggdrasil_20191120..charinfo)n
+where n.clevel=3
+and n.gid in (select gid from requestlog_20191120_2..baphomet10월접속GID union all select gid from requestlog_20191120_2..Darklord10월접속GID union all select gid from requestlog_20191120_2..yggdrasil10월접속GID)
+
+
+---------cursor---------
+declare @num int
+declare cur cursor for select num from requestlog_20191120..num order by num
+open cur
+fetch next from cur into @num
+
+--select @num
+
+--close cur
+--deallocate cur
+
+while (@@FETCH_STATUS=0)
+begin
+if @num<=200
+begin
+insert into requestlog_20191120..TotalLevel10월
+select 'Lv'+convert(varchar,@num) as Level, count(gid) as Count
+from (select * from baphomet_20191120..charinfo union all select * from darklord_20191120..charinfo union all select * from yggdrasil_20191120..charinfo)n
+where n.clevel=@num
+and n.gid in (select gid from requestlog_20191120_2..baphomet10월접속GID union all select gid from requestlog_20191120_2..Darklord10월접속GID union all select gid from requestlog_20191120_2..yggdrasil10월접속GID)
+
+fetch next from cur into @num
+end
+end
+
+---------cursor---------
+
+
+--3-1 전체(11월)
+select 'Lv1' as Level, count(gid) as Count
+into requestlog_20191120..TotalLevel11월
+from (select * from baphomet_20191120..charinfo union all select * from darklord_20191120..charinfo union all select * from yggdrasil_20191120..charinfo)n
+where n.clevel=1
+and n.gid in (select gid from requestlog_20191120_2..baphomet11월접속GID union all select gid from requestlog_20191120_2..Darklord11월접속GID union all select gid from requestlog_20191120_2..yggdrasil11월접속GID)
+
+insert into requestlog_20191120..TotalLevel11월
+select 'Lv2' as Level, count(gid) as Count
+from (select * from baphomet_20191120..charinfo union all select * from darklord_20191120..charinfo union all select * from yggdrasil_20191120..charinfo)n
+where n.clevel=2
+and n.gid in (select gid from requestlog_20191120_2..baphomet11월접속GID union all select gid from requestlog_20191120_2..Darklord11월접속GID union all select gid from requestlog_20191120_2..yggdrasil11월접속GID)
+
+insert into requestlog_20191120..TotalLevel11월
+select 'Lv3' as Level, count(gid) as Count
+from (select * from baphomet_20191120..charinfo union all select * from darklord_20191120..charinfo union all select * from yggdrasil_20191120..charinfo)n
+where n.clevel=3
+and n.gid in (select gid from requestlog_20191120_2..baphomet11월접속GID union all select gid from requestlog_20191120_2..Darklord11월접속GID union all select gid from requestlog_20191120_2..yggdrasil11월접속GID)
+
+
+---------cursor---------
+declare @num int
+declare cur cursor for select num from requestlog_20191120..num order by num
+open cur
+fetch next from cur into @num
+
+--select @num
+
+--close cur
+--deallocate cur
+
+while (@@FETCH_STATUS=0)
+begin
+if @num<=200
+begin
+insert into requestlog_20191120..TotalLevel11월
+select 'Lv'+convert(varchar,@num) as Level, count(gid) as Count
+from (select * from baphomet_20191120..charinfo union all select * from darklord_20191120..charinfo union all select * from yggdrasil_20191120..charinfo)n
+where n.clevel=@num
+and n.gid in (select gid from requestlog_20191120_2..baphomet11월접속GID union all select gid from requestlog_20191120_2..Darklord11월접속GID union all select gid from requestlog_20191120_2..yggdrasil11월접속GID)
+
+fetch next from cur into @num
+end
+end
+
+---------cursor---------
+
+
+--3-1 전체(11월)
+select 'Lv1' as Level, count(gid) as Count
+into requestlog_20191120..TotalLevel11월
+from (select * from baphomet_20191120..charinfo union all select * from darklord_20191120..charinfo union all select * from yggdrasil_20191120..charinfo)n
+where n.clevel=1
+and n.gid in (select gid from requestlog_20191120_2..baphomet11월접속GID union all select gid from requestlog_20191120_2..Darklord11월접속GID union all select gid from requestlog_20191120_2..yggdrasil11월접속GID)
+
+insert into requestlog_20191120..TotalLevel11월
+select 'Lv2' as Level, count(gid) as Count
+from (select * from baphomet_20191120..charinfo union all select * from darklord_20191120..charinfo union all select * from yggdrasil_20191120..charinfo)n
+where n.clevel=2
+and n.gid in (select gid from requestlog_20191120_2..baphomet11월접속GID union all select gid from requestlog_20191120_2..Darklord11월접속GID union all select gid from requestlog_20191120_2..yggdrasil11월접속GID)
+
+insert into requestlog_20191120..TotalLevel11월
+select 'Lv3' as Level, count(gid) as Count
+from (select * from baphomet_20191120..charinfo union all select * from darklord_20191120..charinfo union all select * from yggdrasil_20191120..charinfo)n
+where n.clevel=3
+and n.gid in (select gid from requestlog_20191120_2..baphomet11월접속GID union all select gid from requestlog_20191120_2..Darklord11월접속GID union all select gid from requestlog_20191120_2..yggdrasil11월접속GID)
+
+
+---------cursor---------
+declare @num int
+declare cur cursor for select num from requestlog_20191120..num order by num
+open cur
+fetch next from cur into @num
+
+--select @num
+
+--close cur
+--deallocate cur
+
+while (@@FETCH_STATUS=0)
+begin
+if @num<=200
+begin
+insert into requestlog_20191120..TotalLevel11월
+select 'Lv'+convert(varchar,@num) as Level, count(gid) as Count
+from (select * from baphomet_20191120..charinfo union all select * from darklord_20191120..charinfo union all select * from yggdrasil_20191120..charinfo)n
+where n.clevel=@num
+and n.gid in (select gid from requestlog_20191120_2..baphomet11월접속GID union all select gid from requestlog_20191120_2..Darklord11월접속GID union all select gid from requestlog_20191120_2..yggdrasil11월접속GID)
+
+fetch next from cur into @num
+end
+end
+
+---------cursor---------
+
+
+--3-2 바포(09월)
+
+
+
+select 'Lv1' as Level, count(gid) as Count
+into requestlog_20191120..BaphometLevel9월
+from baphomet_20191120..charinfo
+where clevel=1
+and gid in (select gid from requestlog_20191120_2..baphomet09월접속GID)
+
+insert into requestlog_20191120..BaphometLevel9월
+select 'Lv2' as Level, count(gid) as Count
+from baphomet_20191120..charinfo
+where clevel=2
+and gid in (select gid from requestlog_20191120_2..baphomet09월접속GID)
+
+insert into requestlog_20191120..BaphometLevel9월
+select 'Lv3' as Level, count(gid) as Count
+from baphomet_20191120..charinfo
+where clevel=3
+and gid in (select gid from requestlog_20191120_2..baphomet09월접속GID)
+
+
+---------cursor---------
+declare @num int
+declare cur cursor for select num from requestlog_20191120..num order by num
+open cur
+fetch next from cur into @num
+
+--select @num
+
+--close cur
+--deallocate cur
+
+while (@@FETCH_STATUS=0)
+begin
+if @num<=200
+begin
+insert into requestlog_20191120..BaphometLevel9월
+select 'Lv'+convert(varchar,@num) as Level, count(gid) as Count
+from baphomet_20191120..charinfo
+where clevel=@num
+and gid in (select gid from requestlog_20191120_2..baphomet09월접속GID)
+
+fetch next from cur into @num
+end
+end
+
+
+--3-2 바포(10월)
+
+
+
+select 'Lv1' as Level, count(gid) as Count
+into requestlog_20191120..BaphometLevel10월
+from baphomet_20191120..charinfo
+where clevel=1
+and gid in (select gid from requestlog_20191120_2..baphomet10월접속GID)
+
+insert into requestlog_20191120..BaphometLevel10월
+select 'Lv2' as Level, count(gid) as Count
+from baphomet_20191120..charinfo
+where clevel=2
+and gid in (select gid from requestlog_20191120_2..baphomet10월접속GID)
+
+insert into requestlog_20191120..BaphometLevel10월
+select 'Lv3' as Level, count(gid) as Count
+from baphomet_20191120..charinfo
+where clevel=3
+and gid in (select gid from requestlog_20191120_2..baphomet10월접속GID)
+
+
+---------cursor---------
+declare @num int
+declare cur cursor for select num from requestlog_20191120..num order by num
+open cur
+fetch next from cur into @num
+
+--select @num
+
+--close cur
+--deallocate cur
+
+while (@@FETCH_STATUS=0)
+begin
+if @num<=200
+begin
+insert into requestlog_20191120..BaphometLevel10월
+select 'Lv'+convert(varchar,@num) as Level, count(gid) as Count
+from baphomet_20191120..charinfo
+where clevel=@num
+and gid in (select gid from requestlog_20191120_2..baphomet10월접속GID)
+
+fetch next from cur into @num
+end
+end
+
+
+--3-2 바포(11월)
+
+
+
+select 'Lv1' as Level, count(gid) as Count
+into requestlog_20191120..BaphometLevel11월
+from baphomet_20191120..charinfo
+where clevel=1
+and gid in (select gid from requestlog_20191120_2..baphomet11월접속GID)
+
+insert into requestlog_20191120..BaphometLevel11월
+select 'Lv2' as Level, count(gid) as Count
+from baphomet_20191120..charinfo
+where clevel=2
+and gid in (select gid from requestlog_20191120_2..baphomet11월접속GID)
+
+insert into requestlog_20191120..BaphometLevel11월
+select 'Lv3' as Level, count(gid) as Count
+from baphomet_20191120..charinfo
+where clevel=3
+and gid in (select gid from requestlog_20191120_2..baphomet11월접속GID)
+
+
+---------cursor---------
+declare @num int
+declare cur cursor for select num from requestlog_20191120..num order by num
+open cur
+fetch next from cur into @num
+
+--select @num
+
+--close cur
+--deallocate cur
+
+while (@@FETCH_STATUS=0)
+begin
+if @num<=200
+begin
+insert into requestlog_20191120..BaphometLevel11월
+select 'Lv'+convert(varchar,@num) as Level, count(gid) as Count
+from baphomet_20191120..charinfo
+where clevel=@num
+and gid in (select gid from requestlog_20191120_2..baphomet11월접속GID)
+
+fetch next from cur into @num
+end
+end
+
+--3-3 다크(09월)
+
+
+
+select 'Lv1' as Level, count(gid) as Count
+into requestlog_20191120..darklordLevel9월
+from darklord_20191120..charinfo
+where clevel=1
+and gid in (select gid from requestlog_20191120_2..darklord09월접속GID)
+
+insert into requestlog_20191120..darklordLevel9월
+select 'Lv2' as Level, count(gid) as Count
+from darklord_20191120..charinfo
+where clevel=2
+and gid in (select gid from requestlog_20191120_2..darklord09월접속GID)
+
+insert into requestlog_20191120..darklordLevel9월
+select 'Lv3' as Level, count(gid) as Count
+from darklord_20191120..charinfo
+where clevel=3
+and gid in (select gid from requestlog_20191120_2..darklord09월접속GID)
+
+
+---------cursor---------
+declare @num int
+declare cur cursor for select num from requestlog_20191120..num order by num
+open cur
+fetch next from cur into @num
+
+--select @num
+
+--close cur
+--deallocate cur
+
+while (@@FETCH_STATUS=0)
+begin
+if @num<=200
+begin
+insert into requestlog_20191120..darklordLevel9월
+select 'Lv'+convert(varchar,@num) as Level, count(gid) as Count
+from darklord_20191120..charinfo
+where clevel=@num
+and gid in (select gid from requestlog_20191120_2..darklord09월접속GID)
+
+fetch next from cur into @num
+end
+end
+
+
+--3-3 다크(10월)
+
+
+
+select 'Lv1' as Level, count(gid) as Count
+into requestlog_20191120..darklordLevel10월
+from darklord_20191120..charinfo
+where clevel=1
+and gid in (select gid from requestlog_20191120_2..darklord10월접속GID)
+
+insert into requestlog_20191120..darklordLevel10월
+select 'Lv2' as Level, count(gid) as Count
+from darklord_20191120..charinfo
+where clevel=2
+and gid in (select gid from requestlog_20191120_2..darklord10월접속GID)
+
+insert into requestlog_20191120..darklordLevel10월
+select 'Lv3' as Level, count(gid) as Count
+from darklord_20191120..charinfo
+where clevel=3
+and gid in (select gid from requestlog_20191120_2..darklord10월접속GID)
+
+
+---------cursor---------
+declare @num int
+declare cur cursor for select num from requestlog_20191120..num order by num
+open cur
+fetch next from cur into @num
+
+--select @num
+
+--close cur
+--deallocate cur
+
+while (@@FETCH_STATUS=0)
+begin
+if @num<=200
+begin
+insert into requestlog_20191120..darklordLevel10월
+select 'Lv'+convert(varchar,@num) as Level, count(gid) as Count
+from darklord_20191120..charinfo
+where clevel=@num
+and gid in (select gid from requestlog_20191120_2..darklord10월접속GID)
+
+fetch next from cur into @num
+end
+end
+
+
+--3-3 다크(11월)
+
+
+
+select 'Lv1' as Level, count(gid) as Count
+into requestlog_20191120..darklordLevel11월
+from darklord_20191120..charinfo
+where clevel=1
+and gid in (select gid from requestlog_20191120_2..darklord11월접속GID)
+
+insert into requestlog_20191120..darklordLevel11월
+select 'Lv2' as Level, count(gid) as Count
+from darklord_20191120..charinfo
+where clevel=2
+and gid in (select gid from requestlog_20191120_2..darklord11월접속GID)
+
+insert into requestlog_20191120..darklordLevel11월
+select 'Lv3' as Level, count(gid) as Count
+from darklord_20191120..charinfo
+where clevel=3
+and gid in (select gid from requestlog_20191120_2..darklord11월접속GID)
+
+
+---------cursor---------
+declare @num int
+declare cur cursor for select num from requestlog_20191120..num order by num
+open cur
+fetch next from cur into @num
+
+--select @num
+
+--close cur
+--deallocate cur
+
+while (@@FETCH_STATUS=0)
+begin
+if @num<=200
+begin
+insert into requestlog_20191120..darklordLevel11월
+select 'Lv'+convert(varchar,@num) as Level, count(gid) as Count
+from darklord_20191120..charinfo
+where clevel=@num
+and gid in (select gid from requestlog_20191120_2..darklord11월접속GID)
+
+fetch next from cur into @num
+end
+end
+
+--3-4 이그(09월)
+
+
+
+select 'Lv1' as Level, count(gid) as Count
+into requestlog_20191120..YggdrasilLevel9월
+from Yggdrasil_20191120..charinfo
+where clevel=1
+and gid in (select gid from requestlog_20191120_2..Yggdrasil09월접속GID)
+
+insert into requestlog_20191120..YggdrasilLevel9월
+select 'Lv2' as Level, count(gid) as Count
+from Yggdrasil_20191120..charinfo
+where clevel=2
+and gid in (select gid from requestlog_20191120_2..Yggdrasil09월접속GID)
+
+insert into requestlog_20191120..YggdrasilLevel9월
+select 'Lv3' as Level, count(gid) as Count
+from Yggdrasil_20191120..charinfo
+where clevel=3
+and gid in (select gid from requestlog_20191120_2..Yggdrasil09월접속GID)
+
+
+---------cursor---------
+declare @num int
+declare cur cursor for select num from requestlog_20191120..num order by num
+open cur
+fetch next from cur into @num
+
+--select @num
+
+--close cur
+--deallocate cur
+
+while (@@FETCH_STATUS=0)
+begin
+if @num<=200
+begin
+insert into requestlog_20191120..YggdrasilLevel9월
+select 'Lv'+convert(varchar,@num) as Level, count(gid) as Count
+from Yggdrasil_20191120..charinfo
+where clevel=@num
+and gid in (select gid from requestlog_20191120_2..Yggdrasil09월접속GID)
+
+fetch next from cur into @num
+end
+end
+
+
+--3-4 이그(10월)
+
+
+
+select 'Lv1' as Level, count(gid) as Count
+into requestlog_20191120..YggdrasilLevel10월
+from Yggdrasil_20191120..charinfo
+where clevel=1
+and gid in (select gid from requestlog_20191120_2..Yggdrasil10월접속GID)
+
+insert into requestlog_20191120..YggdrasilLevel10월
+select 'Lv2' as Level, count(gid) as Count
+from Yggdrasil_20191120..charinfo
+where clevel=2
+and gid in (select gid from requestlog_20191120_2..Yggdrasil10월접속GID)
+
+insert into requestlog_20191120..YggdrasilLevel10월
+select 'Lv3' as Level, count(gid) as Count
+from Yggdrasil_20191120..charinfo
+where clevel=3
+and gid in (select gid from requestlog_20191120_2..Yggdrasil10월접속GID)
+
+
+---------cursor---------
+declare @num int
+declare cur cursor for select num from requestlog_20191120..num order by num
+open cur
+fetch next from cur into @num
+
+--select @num
+
+--close cur
+--deallocate cur
+
+while (@@FETCH_STATUS=0)
+begin
+if @num<=200
+begin
+insert into requestlog_20191120..YggdrasilLevel10월
+select 'Lv'+convert(varchar,@num) as Level, count(gid) as Count
+from Yggdrasil_20191120..charinfo
+where clevel=@num
+and gid in (select gid from requestlog_20191120_2..Yggdrasil10월접속GID)
+
+fetch next from cur into @num
+end
+end
+
+
+--3-4 이그(11월)
+
+
+
+select 'Lv1' as Level, count(gid) as Count
+into requestlog_20191120..YggdrasilLevel11월
+from Yggdrasil_20191120..charinfo
+where clevel=1
+and gid in (select gid from requestlog_20191120_2..Yggdrasil11월접속GID)
+
+insert into requestlog_20191120..YggdrasilLevel11월
+select 'Lv2' as Level, count(gid) as Count
+from Yggdrasil_20191120..charinfo
+where clevel=2
+and gid in (select gid from requestlog_20191120_2..Yggdrasil11월접속GID)
+
+insert into requestlog_20191120..YggdrasilLevel11월
+select 'Lv3' as Level, count(gid) as Count
+from Yggdrasil_20191120..charinfo
+where clevel=3
+and gid in (select gid from requestlog_20191120_2..Yggdrasil11월접속GID)
+
+
+---------cursor---------
+declare @num int
+declare cur cursor for select num from requestlog_20191120..num order by num
+open cur
+fetch next from cur into @num
+
+--select @num
+
+--close cur
+--deallocate cur
+
+while (@@FETCH_STATUS=0)
+begin
+if @num<=200
+begin
+insert into requestlog_20191120..YggdrasilLevel11월
+select 'Lv'+convert(varchar,@num) as Level, count(gid) as Count
+from Yggdrasil_20191120..charinfo
+where clevel=@num
+and gid in (select gid from requestlog_20191120_2..Yggdrasil11월접속GID)
+
+fetch next from cur into @num
+end
+end
+

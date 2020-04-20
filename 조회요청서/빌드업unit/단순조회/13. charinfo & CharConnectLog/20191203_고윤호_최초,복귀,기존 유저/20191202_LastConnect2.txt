@@ -1,0 +1,204 @@
+create table requestlog_20191203..Data1_Mjolnir (AID int, [Last_Connect] datetime)
+create table requestlog_20191203..Data2_Mjolnir (AID int, [Last_Connect] datetime)
+create table requestlog_20191203..Data3_Mjolnir (AID int, [Last_Connect] datetime)
+
+bulk insert requestlog_20191203..Data1_Mjolnir from 'D:\Share\20191202_고윤호_최초,복귀,기존 유저\Data1_Mjolnir_LastConnect1.txt' with (fieldterminator=',', rowterminator='\n')
+bulk insert requestlog_20191203..Data2_Mjolnir from 'D:\Share\20191202_고윤호_최초,복귀,기존 유저\Data2_Mjolnir_LastConnect1.txt' with (fieldterminator=',', rowterminator='\n')
+bulk insert requestlog_20191203..Data3_Mjolnir from 'D:\Share\20191202_고윤호_최초,복귀,기존 유저\Data3_Mjolnir_LastConnect1.txt' with (fieldterminator=',', rowterminator='\n')
+
+create table requestlog_20191203..Data1_Brynhild (AID int, [Last_Connect] datetime)
+create table requestlog_20191203..Data2_Brynhild (AID int, [Last_Connect] datetime)
+create table requestlog_20191203..Data3_Brynhild (AID int, [Last_Connect] datetime)
+
+bulk insert requestlog_20191203..Data1_Brynhild from 'D:\Share\20191202_고윤호_최초,복귀,기존 유저\Data1_Brynhild_LastConnect1.txt' with (fieldterminator=',', rowterminator='\n')
+bulk insert requestlog_20191203..Data2_Brynhild from 'D:\Share\20191202_고윤호_최초,복귀,기존 유저\Data2_Brynhild_LastConnect1.txt' with (fieldterminator=',', rowterminator='\n')
+bulk insert requestlog_20191203..Data3_Brynhild from 'D:\Share\20191202_고윤호_최초,복귀,기존 유저\Data3_Brynhild_LastConnect1.txt' with (fieldterminator=',', rowterminator='\n')
+
+
+update requestlog_20191203..Data1_Brynhild 
+set [Last_Connect] = b.[login]
+from requestlog_20191203..Data1_Brynhild a
+join (
+
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from 
+	(
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201806..CharConnectLog union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201807..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201808..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201809..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201810..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201901..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201902..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201903..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201904..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201905..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201906..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201907..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201908..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201909..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201910..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201911..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201912..CharConnectLog union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from brynhild.ItemLog.dbo.CharConnectLog 
+	)n
+		where RN=1
+ )b
+on a.aid=b.aid
+where b.RN =1
+
+update requestlog_20191203..Data2_Brynhild 
+set [Last_Connect] = b.[login]
+from requestlog_20191203..Data2_Brynhild a
+join (
+
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from 
+	(
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201806..CharConnectLog union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201807..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201808..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201809..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201810..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201901..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201902..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201903..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201904..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201905..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201906..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201907..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201908..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201909..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201910..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201911..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201912..CharConnectLog union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from brynhild.ItemLog.dbo.CharConnectLog 
+	)n
+		where RN=1
+ )b
+on a.aid=b.aid
+where b.RN =1
+
+update requestlog_20191203..Data3_Brynhild 
+set [Last_Connect] = b.[login]
+from requestlog_20191203..Data3_Brynhild a
+join (
+
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from 
+	(
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201806..CharConnectLog union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201807..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201808..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201809..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201810..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201901..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201902..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201903..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201904..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201905..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201906..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201907..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201908..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201909..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201910..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201911..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_brynhild_201912..CharConnectLog union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from brynhild.ItemLog.dbo.CharConnectLog 
+	)n
+		where RN=1
+ )b
+on a.aid=b.aid
+where b.RN =1
+
+
+update requestlog_20191203..Data1_mjolnir 
+set [Last_Connect] = b.[login]
+from requestlog_20191203..Data1_mjolnir a
+join (
+
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from 
+	(
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201806..CharConnectLog union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201807..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201808..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201809..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201810..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201901..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201902..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201903..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201904..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201905..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201906..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201907..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201908..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201909..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201910..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201911..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201912..CharConnectLog union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from mjolnir.ItemLog.dbo.CharConnectLog 
+	)n
+		where RN=1
+ )b
+on a.aid=b.aid
+where b.RN =1
+
+update requestlog_20191203..Data2_mjolnir 
+set [Last_Connect] = b.[login]
+from requestlog_20191203..Data2_mjolnir a
+join (
+
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from 
+	(
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201806..CharConnectLog union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201807..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201808..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201809..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201810..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201901..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201902..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201903..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201904..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201905..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201906..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201907..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201908..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201909..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201910..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201911..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201912..CharConnectLog union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from mjolnir.ItemLog.dbo.CharConnectLog 
+	)n
+		where RN=1
+ )b
+on a.aid=b.aid
+where b.RN =1
+
+update requestlog_20191203..Data3_mjolnir 
+set [Last_Connect] = b.[login]
+from requestlog_20191203..Data3_mjolnir a
+join (
+
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from 
+	(
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201806..CharConnectLog union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201807..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201808..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201809..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201810..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201901..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201902..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201903..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201904..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201905..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201906..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201907..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201908..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201909..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201910..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201911..CharConnectLog  union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from ItemLog_mjolnir_201912..CharConnectLog union all 
+select AID, [login], row_number() over(partition by AID order by [login] desc) RN from mjolnir.ItemLog.dbo.CharConnectLog 
+	)n
+		where RN=1
+ )b
+on a.aid=b.aid
+where b.RN =1
+

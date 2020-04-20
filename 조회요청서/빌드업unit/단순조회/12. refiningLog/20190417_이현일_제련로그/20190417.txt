@@ -1,0 +1,26 @@
+select  
+into requestlog_20190417..Yggdrasil
+from (
+select  from ItemLog_Yggdrasil_201902..refiningLog union all
+select  from ItemLog_Yggdrasil_201903..refiningLog union all
+select  from ItemLog_Yggdrasil_201904..refiningLog union all
+select  from Yggdrasil.itemlog.dbo.refiningLog ) b
+where itemID in (490006,490007,490005,490004)
+
+select * 
+into requestlog_20190417..DarkLord
+from (
+select * from ItemLog_DarkLord_201902..refiningLog union all
+select * from ItemLog_DarkLord_201903..refiningLog union all
+select * from ItemLog_DarkLord_201904..refiningLog union all
+select * from DarkLord.itemlog.dbo.refiningLog ) b
+where itemID in (490006,490007,490005,490004)
+
+select * 
+into requestlog_20190417..Baphomet
+from (
+select * from ItemLog_Baphomet_201902..refiningLog union all
+select * from ItemLog_Baphomet_201903..refiningLog union all
+select * from ItemLog_Baphomet_201904..refiningLog union all
+select * from baphomet.itemlog.dbo.refiningLog ) b
+where itemID in (490006,490007,490005,490004)

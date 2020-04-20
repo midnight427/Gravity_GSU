@@ -1,0 +1,77 @@
+with a as(select * 
+
+from 
+(
+select *,row_number()over(partition by serialcode order by itemlevel desc) as rn from ItemLog_Baphomet_201902..refiningLog where itemid in (24425,24426) union all
+select *,row_number()over(partition by serialcode order by itemlevel desc) as rn from baphomet.itemlog.dbo.refiningLog where itemid in (24425,24426) 
+
+)n
+
+where itemid in (24425,24426) and [date] between '2019-02-07 14:30:00.000'and'2019-02-08 15:00:00.000'
+)
+
+--select * from a
+select 'Baphomet' as [server], a.accountid, a.characterid,a.[date],a.charactername,a.itemlevel,a.itemid,b.name
+into requestlog_20190208..refininglog_baphomet
+from a
+join baphomet.script.dbo.viewitemlist b on a.itemid=b.id
+where rn=1
+
+
+
+
+
+
+
+
+
+
+
+
+with a as(select * 
+
+from 
+(
+select *,row_number()over(partition by serialcode order by itemlevel desc) as rn from ItemLog_darklord_201902..refiningLog where itemid in (24425,24426) union all
+select *,row_number()over(partition by serialcode order by itemlevel desc) as rn from darklord.itemlog.dbo.refiningLog where itemid in (24425,24426) 
+
+)n
+
+where itemid in (24425,24426) and [date] between '2019-02-07 14:30:00.000'and'2019-02-08 15:00:00.000'
+)
+
+--select * from a
+select 'Darklord' as [server], a.accountid, a.characterid,a.[date],a.charactername,a.itemlevel,a.itemid,b.name
+into requestlog_20190208..refininglog_darklord
+from a
+join darklord.script.dbo.viewitemlist b on a.itemid=b.id
+where rn=1
+
+
+
+
+
+
+
+
+
+
+
+with a as(select * 
+
+from 
+(
+select *,row_number()over(partition by serialcode order by itemlevel desc) as rn from ItemLog_yggdrasil_201902..refiningLog where itemid in (24425,24426) union all
+select *,row_number()over(partition by serialcode order by itemlevel desc) as rn from yggdrasil.itemlog.dbo.refiningLog where itemid in (24425,24426) 
+
+)n
+
+where itemid in (24425,24426) and [date] between '2019-02-07 14:30:00.000'and'2019-02-08 15:00:00.000'
+)
+
+--select * from a
+select 'Yggdrasil' as [server], a.accountid, a.characterid,a.[date],a.charactername,a.itemlevel,a.itemid,b.name
+into requestlog_20190208..refininglog_yggdrasil
+from a
+join yggdrasil.script.dbo.viewitemlist b on a.itemid=b.id
+where rn=1
