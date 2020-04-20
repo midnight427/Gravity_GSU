@@ -1,4 +1,0 @@
-select * from itemlog_baphomet_201810..itemlog where aid=9390215
-select * from itemlog_baphomet_201810..bankinlog where aid=9390215
-select * from itemlog_baphomet_201810..charconnectlog where aid=9390215
-select * from conncetlog..conncetlog where aid=9390215

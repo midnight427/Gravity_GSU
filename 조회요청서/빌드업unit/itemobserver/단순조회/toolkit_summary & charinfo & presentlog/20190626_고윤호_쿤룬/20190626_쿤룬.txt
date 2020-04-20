@@ -1,5 +1,0 @@
-SELECT b.aid, Key1 as GID,b.CharName
---into requestlog_20190626..brynhild_Demon_Wing_Ear
-FROM brynhild_20190626.[dbo].[toolkit_summary] a
-join brynhild_20190626..charinfo b on a.Key1=b.gid
-where ITID=5000 and RepositoryName='Inventory'
